@@ -1,0 +1,24 @@
+.tab_link {
+  font-size: 16px;
+  line-height: 24px;
+  margin-right: 6px;
+}
+.tab_link:hover {
+  color: var(--red);
+}
+.active {
+  background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: 700;
+  pointer-events: none;
+}
+.tab_span {
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--light-gray);
+}
+.tab_link.active + .tab_span {
+  color: var(--black);
+}

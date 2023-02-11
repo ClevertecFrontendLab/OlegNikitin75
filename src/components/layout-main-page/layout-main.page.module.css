@@ -1,0 +1,23 @@
+.container {
+  width: 100%;
+  max-width: 1150px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+.inner {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 680px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .container {
+    padding: 0 16px;
+  }
+}

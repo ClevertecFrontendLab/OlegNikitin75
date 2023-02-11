@@ -1,0 +1,28 @@
+.box_main{
+  width: 445px;
+  height: 594px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 16px;
+
+}
+.box_preview{
+  width: 65px;
+  height: 86px;
+  border: 1px solid var(--light-gray);
+  border-radius: 3px;
+  overflow: hidden;
+}
+@media screen and (max-width: 768px) {
+  .box_main{
+    width: 136px;
+    height: 198px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .box_main{
+    width: 188px;
+    height: 260px;
+  }
+}
+

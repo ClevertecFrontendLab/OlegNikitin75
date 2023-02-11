@@ -1,0 +1,27 @@
+.review {
+  margin-bottom: 42px;
+  max-width: 730px;
+}
+.review_head {
+  display: flex;
+  margin-bottom: 16px;
+  gap: 24px;
+}
+.review_text {
+  font-size: 16px;
+  line-height: 24px;
+}
+.review_head__box {
+  display: flex;
+  gap: 24px;
+}
+@media screen and (max-width: 425px) {
+  .review_text {
+    font-size: 15px;
+    line-height: 20px;
+  }
+  .review_head__box {
+    flex-direction: column;
+    gap: 3px;
+  }
+}
