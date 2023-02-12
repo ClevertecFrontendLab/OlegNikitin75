@@ -1,3 +1,3 @@
-import { categories, books } from './db';
+import { categories } from './db';
 
-export { categories, books };
+export { categories };

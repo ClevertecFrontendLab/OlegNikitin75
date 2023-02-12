@@ -20,6 +20,7 @@ import star from './icons/star.svg';
 import starFill from './icons/star-fill.svg';
 import burger from './icons/burger.svg';
 import slash from './icons/slash.svg';
+import loader from './icons/loader.svg';
 
 import imageBook from './img/image-book.jpg';
 import imageBookDesktop from './img/image-book-desctop.jpg';
@@ -65,4 +66,5 @@ export {
   imageBookTablet,
   imageBookMobile,
   slash,
+  loader,
 };

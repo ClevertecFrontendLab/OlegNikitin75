@@ -76,34 +76,36 @@ export const BookPage = () => {
             <p className={styles.desc_text}>{books[0].desc}</p>
           </div>
         )}
-        <div className={styles.box}>
-          <p className={styles.desc_title}>Рейтинг</p>
-          <Rating rating={books[0].rating} showRating={true} />
+        <div className={styles.wrap}>
+          <div className={styles.box}>
+            <p className={styles.desc_title}>Рейтинг</p>
+            <Rating rating={books[0].rating} showRating={true} />
+          </div>
+          <div className={styles.box}>
+            <p className={styles.desc_title}>Подробная информация</p>
+            <Output output={books[0].output} />
+          </div>
+          <p className={styles.desc_title}>
+            Отзывы <span>{books[0].reviews.length}</span>
+            {books[0].reviews.length && (
+              <button
+                data-test-id='button-hide-reviews'
+                className={styles.review_btn}
+                type='button'
+                onClick={handleClick}
+              >
+                <img src={showReview ? arrowUpBlack : arrow} alt='icon' />
+              </button>
+            )}
+          </p>
+          <ul className={!showReview ? styles.hide : ''}>
+            {books[0].reviews.map((book) => (
+              <Review key={book.id} name={book.name} date={book.date} rating={book.rating} text={book.text} />
+            ))}
+          </ul>
+          {width <= 768 && <Button data-test-id='button-rating' title='Оценить книгу' size='full' />}
+          {width > 768 && <Button data-test-id='button-rating' title='Оценить книгу' size='large_high' />}
         </div>
-        <div className={styles.box}>
-          <p className={styles.desc_title}>Подробная информация</p>
-          <Output output={books[0].output} />
-        </div>
-        <p className={styles.desc_title}>
-          Отзывы <span>{books[0].reviews.length}</span>
-          {books[0].reviews.length && (
-            <button
-              data-test-id='button-hide-reviews'
-              className={styles.review_btn}
-              type='button'
-              onClick={handleClick}
-            >
-              <img src={showReview ? arrowUpBlack : arrow} alt='icon' />
-            </button>
-          )}
-        </p>
-        <ul className={!showReview ? styles.hide : ''}>
-          {books[0].reviews.map((book) => (
-            <Review key={book.id} name={book.name} date={book.date} rating={book.rating} text={book.text} />
-          ))}
-        </ul>
-        {width <= 768 && <Button data-test-id='button-rating' title='Оценить книгу' size='full' />}
-        {width > 768 && <Button data-test-id='button-rating' title='Оценить книгу' size='large_high' />}
       </div>
     </div>
   );

@@ -6,9 +6,10 @@ import { TabItem } from '../tabitem/tab-item';
 import styles from './navbar.module.css';
 import { useMobileMenuStore } from '../../data/stores/use-mobile-menu-store';
 import { useWidthScreen } from '../../utils/helpers';
+import { useGetBooksQuery } from '../../redux';
 
 export const Navbar = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [active, setActive] = useState(1);
   const [activeItem, setActiveItem] = useState(0);
   const [mobileMenu, closeMobileMenu] = useMobileMenuStore((state) => [state.mobileMenu, state.closeMobileMenu]);
@@ -37,6 +38,11 @@ export const Navbar = () => {
   const handleClickItem = (id) => {
     setActiveItem(id);
   };
+  const { isLoading } = useGetBooksQuery();
+
+  useEffect(() => {
+    if (!isLoading) setOpen(true);
+  }, [isLoading]);
 
   return (
     <nav

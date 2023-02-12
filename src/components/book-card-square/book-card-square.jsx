@@ -4,13 +4,14 @@ import styles from './book-card-square.module.css';
 import { Button } from '../ui/button/button';
 import { iconNoImageBook } from '../../assets';
 import { Rating } from '../rating/rating';
+import { getId } from '../../utils/helpers';
 
-export const BookCardSquare = ({ imgUrl, title, rating, author, year, status, category, id }) => (
+export const BookCardSquare = ({ imgUrl, title, rating, authors, year, booking, delivery, category, id }) => (
   <Link data-test-id='card' className={styles.card} to={`/books/${category}/${id}`}>
-    <div>
+    <div className={styles.card_content}>
       <div className={styles.img}>
         {imgUrl ? (
-          <img className={styles.picture} src={imgUrl} alt={title} />
+          <img className={styles.picture} src={`https://strapi.cleverland.by${imgUrl}`} alt={title} />
         ) : (
           <img src={iconNoImageBook} alt={title} />
         )}
@@ -21,11 +22,17 @@ export const BookCardSquare = ({ imgUrl, title, rating, author, year, status, ca
           {title}
         </p>
         <div className={styles.info}>
-          <p className={styles.author}>{author}</p>
+          <ul className={styles.authors}>
+            {authors.map((author) => (
+              <li key={getId()}>
+                <p className={styles.author}>{author},</p>
+              </li>
+            ))}
+          </ul>
           <p className={styles.year}>{year}</p>
         </div>
       </div>
     </div>
-    <Button title={!status.name ? 'забронировать' : status.name} status={status.name} date={status.date} />
+    <Button booking={booking} delivery={delivery} size='medium_full' />
   </Link>
 );

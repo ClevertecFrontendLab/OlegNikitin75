@@ -12,3 +12,7 @@ export function useWidthScreen() {
 
   return { width };
 }
+
+export function getId() {
+  return Math.random().toString(32).substring(2, 12);
+}

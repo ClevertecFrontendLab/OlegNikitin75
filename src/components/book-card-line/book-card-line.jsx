@@ -4,13 +4,14 @@ import styles from './book-card-line.module.css';
 import { Button } from '../ui/button/button';
 import { iconNoImageBook } from '../../assets';
 import { Rating } from '../rating/rating';
+import { getId } from '../../utils/helpers';
 
-export const BookCardLine = ({ imgUrl, title, rating, author, year, status, category, id }) => (
+export const BookCardLine = ({ imgUrl, title, rating, authors, year, booking, delivery, category, id }) => (
   <Link data-test-id='card' className={styles.card} to={`/books/${category}/${id}`}>
     <div className={styles.box}>
       <div className={styles.img}>
         {imgUrl ? (
-          <img className={styles.picture} src={imgUrl} alt={title} />
+          <img className={styles.picture} src={`https://strapi.cleverland.by${imgUrl}`} alt={title} />
         ) : (
           <img src={iconNoImageBook} alt={title} />
         )}
@@ -18,18 +19,18 @@ export const BookCardLine = ({ imgUrl, title, rating, author, year, status, cate
       <div className={styles.content}>
         <p className={styles.title}>{title}</p>
         <div className={styles.info}>
-          <p className={styles.author}>{author}</p>
+          <ul className={styles.authors}>
+            {authors.map((author) => (
+              <li key={getId()}>
+                <p className={styles.author}>{author},</p>
+              </li>
+            ))}
+          </ul>
           <p className={styles.year}>{year}</p>
         </div>
         <div className={styles.box_bottom}>
           <Rating rating={rating} />
-          <Button
-            title={!status.name ? 'забронировать' : status.name}
-            status={status.name}
-            date={status.date}
-            size='medium'
-            onClick={() => {}}
-          />
+          <Button booking={booking} delivery={delivery} size='medium' />
         </div>
       </div>
     </div>

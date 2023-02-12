@@ -13,6 +13,9 @@
   align-items: center;
   padding-top: 32px;
 }
+.wrap{
+  margin-top: 70px;
+}
 .box {
   margin-bottom: 62px;
 }
@@ -104,6 +107,7 @@
     width: 100%;
     margin-bottom: 42px;
   }
+
 }
 @media screen and (max-width: 425px) {
   .detail {

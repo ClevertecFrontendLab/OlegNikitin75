@@ -11,10 +11,12 @@ import {
 } from '../../assets';
 import styles from './catalog.module.css';
 import { BookCardSquare } from '../book-card-square/book-card-square';
-import { books } from '../../constants';
 import { BookCardLine } from '../book-card-line/book-card-line';
+import { useGetBooksQuery } from '../../redux';
 
 export const Catalog = () => {
+  const { data = [] } = useGetBooksQuery();
+  console.log(data);
   const [active, setActive] = useState('square');
   const [showInput, setShowInput] = useState(false);
   const [focus, setFocus] = useState(false);
@@ -112,15 +114,16 @@ export const Catalog = () => {
       <div>
         {active === 'square' && (
           <ul className={styles.catalog_books}>
-            {books.map((book) => (
+            {data.map((book) => (
               <li key={book.id}>
                 <BookCardSquare
-                  imgUrl={book.imgUrl.all}
+                  imgUrl={book.image?.url}
                   title={book.title}
                   rating={book.rating}
-                  author={book.author}
-                  year={book.year}
-                  status={book.status}
+                  authors={book.authors}
+                  year={book.issueYear}
+                  booking={book.booking}
+                  delivery={book.delivery}
                   category={book.category}
                   id={book.id}
                 />
@@ -130,16 +133,17 @@ export const Catalog = () => {
         )}
         {active === 'line' && (
           <ul className={styles.catalog_books__line}>
-            {books.map((book) => (
+            {data.map((book) => (
               <li key={book.id}>
                 <BookCardLine
-                  imgUrl={book.imgUrl.all}
+                  imgUrl={book.image?.url}
                   title={book.title}
                   rating={book.rating}
-                  author={book.author}
-                  year={book.year}
+                  authors={book.authors}
+                  year={book.issueYear}
+                  booking={book.booking}
+                  delivery={book.delivery}
                   category={book.category}
-                  status={book.status}
                   id={book.id}
                 />
               </li>

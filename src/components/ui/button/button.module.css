@@ -20,6 +20,9 @@
 .medium {
   width: 174px;
 }
+.medium_full {
+  width: 100%;
+}
 .full {
   width: 100%;
   height: 52px;
