@@ -1,21 +1,23 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './book-page.module.css';
-import { books } from '../../constants';
 import { Button } from '../../components/ui/button/button';
 import { Rating } from '../../components/rating/rating';
 import { Review } from '../../components/review/review';
 import { Output } from '../../components/output/output';
 import { Crumbs } from '../../components/crumbs/crumbs';
-import { useWidthScreen } from '../../utils/helpers';
+import { getId, useWidthScreen } from '../../utils/helpers';
 import { Navbar } from '../../components/navbar/navbar';
 import { Slider } from '../../components/slider/slider';
-import { arrow, arrowUpBlack, iconNoImageBook, imageBookDesktop } from '../../assets';
+import { arrow, arrowUpBlack, iconNoImageBook } from '../../assets';
+import { useGetBookQuery } from '../../redux';
 
 export const BookPage = () => {
-  const { width } = useWidthScreen();
   const { bookId } = useParams();
-  const lengthSlider = books[Number(bookId) - 1].imgUrl.sliderImages.length;
+  const { data: book = {}, isLoading } = useGetBookQuery(bookId);
+  console.log(book);
+  const { width } = useWidthScreen();
+  const lengthSlider = book?.images?.length;
   const [showReview, setShowReview] = useState(false);
   const handleClick = () => {
     setShowReview(!showReview);
@@ -28,43 +30,39 @@ export const BookPage = () => {
         <div className={styles.inner}>
           <div className={styles.detail}>
             <div className={styles.detail_img}>
-              {lengthSlider > 0 && (
+              {lengthSlider > 1 && (
                 <div>
-                  <Slider
-                    imagesUrlSlider={books[Number(bookId) - 1].imgUrl.sliderImages}
-                    picUrlSlider={books[Number(bookId) - 1].imgUrl.sliderImages}
-                    bookId={bookId}
-                  />
+                  <Slider imagesUrlSlider={book.images} />
                 </div>
               )}
-              {lengthSlider === 0 && books[Number(bookId) - 1].imgUrl.desktop === null && (
+              {book.images === null && (
                 <div data-test-id='slide-big' className={styles.img_box}>
-                  <img src={iconNoImageBook} alt='' />
+                  <img src={iconNoImageBook} alt='Not pic' />
                 </div>
               )}
-              {lengthSlider === 0 && books[Number(bookId) - 1].imgUrl.desktop !== null && (
+              {lengthSlider === 1 && (
                 <div data-test-id='slide-big'>
-                  <img src={imageBookDesktop} alt='' />
+                  <img src={`https://strapi.cleverland.by${book.images[0].url}`} alt={book.title} />
                 </div>
               )}
             </div>
             <div>
-              <p className={styles.title}>{books[0].title}</p>
+              <p className={styles.title}>{book.title}</p>
               <div className={styles.info}>
-                <span className={styles.author}>{books[0].author}</span>
-                <span className={styles.year}>{books[0].year}</span>
+                <ul className={styles.authors}>
+                  {book?.authors?.map((author) => (
+                    <li key={getId()}>
+                      <p className={styles.author}>{author},</p>
+                    </li>
+                  ))}
+                </ul>
+                <span className={styles.year}>{book.issueYear}</span>
               </div>
-              <Button
-                title={!books[0].status.name ? 'забронировать' : books[0].status.name}
-                status={books[0].status.name}
-                date={books[0].status.date}
-                size='large_high'
-                onClick={() => {}}
-              />
+              <Button booking={book.booking} delivery={book.delivery} size='large_high' onClick={() => {}} />
               {width > 768 && (
                 <div className={styles.desc}>
                   <p className={styles.desc_title}>О книге</p>
-                  <p className={styles.desc_text}>{books[0].desc}</p>
+                  <p className={styles.desc_text}>{book.description}</p>
                 </div>
               )}
             </div>
@@ -73,21 +71,31 @@ export const BookPage = () => {
         {width <= 768 && (
           <div className={styles.desc}>
             <p className={styles.desc_title}>О книге</p>
-            <p className={styles.desc_text}>{books[0].desc}</p>
+            <p className={styles.desc_text}>{book.description}</p>
           </div>
         )}
         <div className={styles.wrap}>
           <div className={styles.box}>
             <p className={styles.desc_title}>Рейтинг</p>
-            <Rating rating={books[0].rating} showRating={true} />
+            <Rating rating={book.rating} />
           </div>
           <div className={styles.box}>
             <p className={styles.desc_title}>Подробная информация</p>
-            <Output output={books[0].output} />
+            <Output
+              publish={book.publish}
+              year={book.issueYear}
+              pages={book.pages}
+              cover={book.cover}
+              categories={book.categories}
+              weight={book.weight}
+              format={book.format}
+              ISBN={book.ISBN}
+              producer={book.producer}
+            />
           </div>
           <p className={styles.desc_title}>
-            Отзывы <span>{books[0].reviews.length}</span>
-            {books[0].reviews.length && (
+            Отзывы <span>{book?.comments?.length}</span>
+            {book?.comments?.length && (
               <button
                 data-test-id='button-hide-reviews'
                 className={styles.review_btn}
@@ -99,8 +107,15 @@ export const BookPage = () => {
             )}
           </p>
           <ul className={!showReview ? styles.hide : ''}>
-            {books[0].reviews.map((book) => (
-              <Review key={book.id} name={book.name} date={book.date} rating={book.rating} text={book.text} />
+            {book?.comments?.map((comment) => (
+              <Review
+                key={comment.id}
+                name={`${comment.user.firstName} ${comment.user.lastName}`}
+                date={comment.createdAt}
+                rating={comment.rating}
+                text={comment.text}
+                avatar={comment.user.avatarUrl}
+              />
             ))}
           </ul>
           {width <= 768 && <Button data-test-id='button-rating' title='Оценить книгу' size='full' />}

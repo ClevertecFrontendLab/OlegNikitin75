@@ -26,7 +26,8 @@ root.render(
               <Route path='/terms' element={<Terms title='Правила пользования' />} />
               <Route path='/contract' element={<Terms title='Договор оферты' />} />
             </Route>
-            <Route path='/books/:category/:bookId' element={<BookPage />} />
+            {/*<Route path='/books/:category/:bookId' element={<BookPage />} />*/}
+            <Route path='/books/all/:bookId' element={<BookPage />} />
             <Route path='/profile' element={<ProfilePage />} />
           </Route>
         </Routes>

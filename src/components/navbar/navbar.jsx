@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { categories } from '../../constants';
-import { arrow, arrowUp, arrowHover } from '../../assets';
+import { arrow, arrowHover, arrowUp } from '../../assets';
 import { TabItem } from '../tabitem/tab-item';
 import styles from './navbar.module.css';
 import { useMobileMenuStore } from '../../data/stores/use-mobile-menu-store';
 import { useWidthScreen } from '../../utils/helpers';
-import { useGetBooksQuery } from '../../redux';
+import { useGetBooksQuery, useGetCategoriesQuery } from '../../redux';
 
 export const Navbar = () => {
+  const { data: categories = [] } = useGetCategoriesQuery();
+  const { data: books = [], isLoading } = useGetBooksQuery();
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(1);
   const [activeItem, setActiveItem] = useState(0);
@@ -38,11 +39,19 @@ export const Navbar = () => {
   const handleClickItem = (id) => {
     setActiveItem(id);
   };
-  const { isLoading } = useGetBooksQuery();
-
   useEffect(() => {
     if (!isLoading) setOpen(true);
   }, [isLoading]);
+
+  const counterBooks = (categoryName) => {
+    let counter = 0;
+    books.forEach((book) => {
+      if (book.categories.includes(categoryName)) {
+        counter += 1;
+      }
+    });
+    return counter;
+  };
 
   return (
     <nav
@@ -74,13 +83,20 @@ export const Navbar = () => {
           </NavLink>
 
           <ul className={open ? styles.categories : styles.categories_novisible}>
-            {categories.map((cat, index) => (
+            <TabItem
+              dataTestId={width > 960 ? 'navigation-books' : 'burger-books'}
+              name='Все книги'
+              id={0}
+              link='/'
+              active={activeItem}
+              handleClickItem={handleClickItem}
+            />
+            {categories.map((cat) => (
               <TabItem
-                dataTestId={index === 0 ? (width > 960 ? 'navigation-books' : 'burger-books') : null}
                 key={cat.id}
                 name={cat.name}
-                quantity={cat.quantity}
-                link={cat.link}
+                quantity={counterBooks(cat.name)}
+                link={cat.path}
                 id={cat.id}
                 active={activeItem}
                 handleClickItem={handleClickItem}

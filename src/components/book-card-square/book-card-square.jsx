@@ -7,7 +7,7 @@ import { Rating } from '../rating/rating';
 import { getId } from '../../utils/helpers';
 
 export const BookCardSquare = ({ imgUrl, title, rating, authors, year, booking, delivery, category, id }) => (
-  <Link data-test-id='card' className={styles.card} to={`/books/${category}/${id}`}>
+  <Link data-test-id='card' className={styles.card} to={`/books/all/${id}`}>
     <div className={styles.card_content}>
       <div className={styles.img}>
         {imgUrl ? (

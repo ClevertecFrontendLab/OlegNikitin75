@@ -16,7 +16,7 @@ import { useGetBooksQuery } from '../../redux';
 
 export const Catalog = () => {
   const { data = [] } = useGetBooksQuery();
-  console.log(data);
+
   const [active, setActive] = useState('square');
   const [showInput, setShowInput] = useState(false);
   const [focus, setFocus] = useState(false);
@@ -124,7 +124,7 @@ export const Catalog = () => {
                   year={book.issueYear}
                   booking={book.booking}
                   delivery={book.delivery}
-                  category={book.category}
+                  category={book.categories[0]}
                   id={book.id}
                 />
               </li>

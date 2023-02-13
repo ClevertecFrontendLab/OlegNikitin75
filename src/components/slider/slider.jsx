@@ -29,7 +29,7 @@ export const Slider = ({ imagesUrlSlider }) => {
         {imagesUrlSlider.map((image) => (
           <SwiperSlide key={Math.random().toString(32).substring(2, 12)}>
             <div className={styles.box_main}>
-              <img src={image} alt='pic' />
+              <img src={`https://strapi.cleverland.by${image.url}`} alt='pic' />
             </div>
           </SwiperSlide>
         ))}
@@ -50,7 +50,7 @@ export const Slider = ({ imagesUrlSlider }) => {
         {imagesUrlSlider.map((image) => (
           <SwiperSlide key={Math.random().toString(32).substring(2, 12)}>
             <div data-test-id='slide-mini' className={styles.box_preview}>
-              <img src={image} alt='pic' />
+              <img src={`https://strapi.cleverland.by${image.url}`} alt='pic' />
             </div>
           </SwiperSlide>
         ))}

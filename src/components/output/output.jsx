@@ -1,46 +1,53 @@
 import React from 'react';
 import styles from './output.module.css';
+import { getId } from '../../utils/helpers';
 
-export const Output = ({ output }) => (
+export const Output = ({ publish, year, pages, cover, categories, weight, format, ISBN, producer }) => (
   <div className={styles.output_list}>
     <div className={`${styles.output_list__column} ${styles.output_list__column__left}`}>
       <p className={styles.output__item}>
         <span>Издательство</span>
-        <span>{output.publishing}</span>
+        <span>{publish}</span>
       </p>
       <p className={styles.output__item}>
         <span>Год издания</span>
-        <span>{output.year}</span>
+        <span>{year}</span>
       </p>
       <p className={styles.output__item}>
         <span>Страниц</span>
-        <span>{output.pages}</span>
+        <span>{pages}</span>
       </p>
       <p className={styles.output__item}>
         <span>Переплёт</span>
-        <span>{output.binding}</span>
+        <span>{cover}</span>
       </p>
       <p className={styles.output__item}>
         <span>Формат</span>
-        <span>{output.format}</span>
+        <span>{format}</span>
       </p>
     </div>
     <div className={styles.output_list__column}>
-      <p className={styles.output__item}>
+      <div className={styles.output__item}>
         <span>Жанр</span>
-        <span>{output.genre}</span>
-      </p>
+        <ul>
+          {categories?.map((cat) => (
+            <li key={getId()}>
+              <span>{cat}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
       <p className={styles.output__item}>
         <span>Вес</span>
-        <span>{output.weight}</span>
+        <span>{weight}</span>
       </p>
       <p className={styles.output__item}>
         <span>ISBN</span>
-        <span>{output.ISBN}</span>
+        <span>{ISBN}</span>
       </p>
       <p className={styles.output__item}>
         <span>Изготовитель</span>
-        <span>{output.manufacturer}</span>
+        <span>{producer}</span>
       </p>
     </div>
   </div>

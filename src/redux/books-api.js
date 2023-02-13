@@ -7,6 +7,12 @@ export const booksApi = createApi({
     getBooks: build.query({
       query: () => `api/books`,
     }),
+    getCategories: build.query({
+      query: () => `api/categories`,
+    }),
+    getBook: build.query({
+      query: (id) => `api/books/${id}`,
+    }),
   }),
 });
-export const { useGetBooksQuery } = booksApi;
+export const { useGetBooksQuery, useGetCategoriesQuery, useGetBookQuery } = booksApi;

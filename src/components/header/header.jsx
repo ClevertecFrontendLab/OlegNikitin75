@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './header.module.css';
-import { logo, avatar } from '../../assets';
-import { Avatar } from '../avatar/avatar';
+import { logo } from '../../assets';
+import { Avatar } from '../avatar';
 import { useMobileMenuStore } from '../../data/stores/use-mobile-menu-store';
 
 export const Header = () => {
@@ -33,7 +33,7 @@ export const Header = () => {
           </div>
           <div className={styles.inner_right}>
             <span className={styles.message}>Привет, Иван!</span>
-            <Avatar size='large' imgUrl={avatar} />
+            <Avatar size='large' imgUrl={null} />
           </div>
         </div>
       </div>

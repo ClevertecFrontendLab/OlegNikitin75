@@ -2,9 +2,9 @@ import React from 'react';
 import { star, starFill } from '../../assets';
 import styles from './rating.module.css';
 
-export const Rating = ({ rating, showRating }) => (
+export const Rating = ({ rating }) => (
   <div className={styles.rating_box}>
-    {!showRating && !rating ? (
+    {!rating ? (
       <p>ещё нет оценок</p>
     ) : (
       <ul className={styles.rating_list}>
@@ -16,6 +16,6 @@ export const Rating = ({ rating, showRating }) => (
         })}
       </ul>
     )}
-    {showRating ? <span className={styles.rating_all}>{rating}</span> : null}
+    {rating ? <span className={styles.rating_all}>{rating}</span> : null}
   </div>
 );

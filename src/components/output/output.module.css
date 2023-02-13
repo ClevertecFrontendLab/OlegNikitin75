@@ -2,6 +2,9 @@
   display: flex;
   gap: 148px;
 }
+.output_item{
+  display: flex;
+}
 .output_list__column__left {
   width: 100%;
   max-width: 335px;
