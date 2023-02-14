@@ -2,21 +2,22 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './crumbs.module.css';
 import { slash } from '../../assets';
+import { getId } from '../../utils/helpers';
 
-export const Crumbs = () => {
+export const Crumbs = ({ title, categories }) => {
   const navigate = useNavigate();
   return (
     <div className={styles.crumbs}>
       <div className={styles.container}>
         <div className={styles.inner}>
-          <span
-            className={styles.crumbs_link}
-            onClick={() => navigate(-2)}
-            onKeyDown={() => navigate(-2)}
-            role='presentation'
-          >
-            Бизнес книги
-          </span>
+          <ul className={styles.crumbs_category}>
+            {categories?.map((cat) => (
+              <li key={getId()} onClick={() => navigate(-2)} onKeyDown={() => navigate(-2)} role='presentation'>
+                <span className={styles.crumbs_link}>{cat}</span>
+              </li>
+            ))}
+          </ul>
+
           <span>
             <img className={styles.crumbs_img} src={slash} alt='icon' />
           </span>
@@ -26,7 +27,7 @@ export const Crumbs = () => {
             onKeyDown={() => navigate(-2)}
             role='presentation'
           >
-            Грокаем алгоритмы. Иллюстрированное пособие для программистов и любопытствующих
+            {title}
           </span>
         </div>
       </div>

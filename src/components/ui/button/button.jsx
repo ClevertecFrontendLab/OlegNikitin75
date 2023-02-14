@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './button.module.css';
+import { getDate } from '../../../utils/helpers';
 
 export function Button({ booking, delivery, size }) {
   const [active, setActive] = useState(false);
@@ -10,8 +11,7 @@ export function Button({ booking, delivery, size }) {
         type='button'
         onClick={() => setActive(!active)}
       >
-        Занята до
-        <span className={styles.btn_span}>{delivery?.dateHandedTo}</span>
+        <span className={styles.btn_span}>Занята до {getDate(delivery?.dateHandedTo, false)}</span>
       </button>
     );
   }

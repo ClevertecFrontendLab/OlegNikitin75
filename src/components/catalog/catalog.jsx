@@ -15,7 +15,7 @@ import { BookCardLine } from '../book-card-line/book-card-line';
 import { useGetBooksQuery } from '../../redux';
 
 export const Catalog = () => {
-  const { data = [] } = useGetBooksQuery();
+  const { data = [], isError } = useGetBooksQuery();
 
   const [active, setActive] = useState('square');
   const [showInput, setShowInput] = useState(false);
@@ -37,79 +37,83 @@ export const Catalog = () => {
 
   return (
     <div>
-      <div className={styles.head}>
-        <div className={styles.input_box__small} style={showInput ? { display: 'flex' } : { display: 'none' }}>
-          <input
-            data-test-id='input-search'
-            ref={refInputSmall}
-            className={styles.input_search}
-            placeholder='Поиск книги или автора…'
-          />
-          <button data-test-id='button-search-close' type='button' onClick={handleClickBtnSearch}>
-            <img src={iconCloseInput} alt='icon' />
-          </button>
-        </div>
-
-        {!showInput && (
-          <div className={styles.head_inner}>
-            <div className={styles.head_left}>
-              <div className={styles.input_box}>
-                <img src={focus ? magnifierColor : magnifier} alt='icon' />
-
-                <input
-                  className={styles.input_search}
-                  placeholder='Поиск книги или автора…'
-                  onFocus={() => handleFocus(true)}
-                  onBlur={() => handleFocus(false)}
-                />
-              </div>
-              <button
-                data-test-id='button-search-open'
-                className={styles.btn_input__small}
-                type='button'
-                onClick={handleClickBtnSearch}
-              >
-                <img src={magnifier} alt='icon' />
-              </button>
-              <button className={styles.btn_sort} type='button' onClick={() => {}}>
-                <img src={iconSortUp} alt='icon' />
-                по рейтингу
-              </button>
-              <button className={styles.btn_sort__small} type='button' onClick={() => {}}>
-                <img src={iconSortUp} alt='icon' />
-              </button>
-            </div>
-            <div className={styles.buttons}>
-              <button
-                data-test-id='button-menu-view-window'
-                className={
-                  active === 'square'
-                    ? `${styles.active} ${styles.btn} ${styles.round}`
-                    : `${styles.btn} ${styles.round}`
-                }
-                type='button'
-                onClick={() => setActive('square')}
-              >
-                {active === 'square' ? (
-                  <img src={iconSquareWhite} alt='icon' />
-                ) : (
-                  <img src={iconSquareBlack} alt='icon' />
-                )}
-              </button>
-              <button
-                data-test-id='button-menu-view-list'
-                className={
-                  active === 'line' ? `${styles.active} ${styles.btn} ${styles.round}` : `${styles.btn} ${styles.round}`
-                }
-                type='button'
-                onClick={() => setActive('line')}
-              >
-                {active === 'line' ? <img src={iconLineWhite} alt='icon' /> : <img src={iconLineBlack} alt='icon' />}
-              </button>
-            </div>
+      {!isError && (
+        <div className={styles.head}>
+          <div className={styles.input_box__small} style={showInput ? { display: 'flex' } : { display: 'none' }}>
+            <input
+              data-test-id='input-search'
+              ref={refInputSmall}
+              className={styles.input_search}
+              placeholder='Поиск книги или автора…'
+            />
+            <button data-test-id='button-search-close' type='button' onClick={handleClickBtnSearch}>
+              <img src={iconCloseInput} alt='icon' />
+            </button>
           </div>
-        )}
-      </div>
+
+          {!showInput && (
+            <div className={styles.head_inner}>
+              <div className={styles.head_left}>
+                <div className={styles.input_box}>
+                  <img src={focus ? magnifierColor : magnifier} alt='icon' />
+
+                  <input
+                    className={styles.input_search}
+                    placeholder='Поиск книги или автора…'
+                    onFocus={() => handleFocus(true)}
+                    onBlur={() => handleFocus(false)}
+                  />
+                </div>
+                <button
+                  data-test-id='button-search-open'
+                  className={styles.btn_input__small}
+                  type='button'
+                  onClick={handleClickBtnSearch}
+                >
+                  <img src={magnifier} alt='icon' />
+                </button>
+                <button className={styles.btn_sort} type='button' onClick={() => {}}>
+                  <img src={iconSortUp} alt='icon' />
+                  по рейтингу
+                </button>
+                <button className={styles.btn_sort__small} type='button' onClick={() => {}}>
+                  <img src={iconSortUp} alt='icon' />
+                </button>
+              </div>
+              <div className={styles.buttons}>
+                <button
+                  data-test-id='button-menu-view-window'
+                  className={
+                    active === 'square'
+                      ? `${styles.active} ${styles.btn} ${styles.round}`
+                      : `${styles.btn} ${styles.round}`
+                  }
+                  type='button'
+                  onClick={() => setActive('square')}
+                >
+                  {active === 'square' ? (
+                    <img src={iconSquareWhite} alt='icon' />
+                  ) : (
+                    <img src={iconSquareBlack} alt='icon' />
+                  )}
+                </button>
+                <button
+                  data-test-id='button-menu-view-list'
+                  className={
+                    active === 'line'
+                      ? `${styles.active} ${styles.btn} ${styles.round}`
+                      : `${styles.btn} ${styles.round}`
+                  }
+                  type='button'
+                  onClick={() => setActive('line')}
+                >
+                  {active === 'line' ? <img src={iconLineWhite} alt='icon' /> : <img src={iconLineBlack} alt='icon' />}
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       <div>
         {active === 'square' && (

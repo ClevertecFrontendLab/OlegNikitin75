@@ -2,6 +2,10 @@
   background: #f9f9f9;
   margin-top: 42px;
 }
+.crumbs_category{
+  display: flex;
+  gap: 5px;
+}
 .container {
   max-width: 1150px;
   padding: 0 20px;
@@ -9,6 +13,8 @@
 }
 .inner {
   padding: 23px 0;
+  display: flex;
+  gap: 8px;
 }
 .crumbs_link {
   color: var(--light-gray);
@@ -19,12 +25,9 @@
   color: var(--gray);
 }
 .crumbs_img {
-  display: inline-block;
+  display: inline;
   vertical-align: middle;
-  margin-left: 8px;
-  margin-right: 8px;
 }
-
 @media screen and (max-width: 768px) {
   .container {
     max-width: 680px;

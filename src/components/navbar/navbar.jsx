@@ -9,7 +9,7 @@ import { useGetBooksQuery, useGetCategoriesQuery } from '../../redux';
 
 export const Navbar = () => {
   const { data: categories = [] } = useGetCategoriesQuery();
-  const { data: books = [], isLoading } = useGetBooksQuery();
+  const { data: books = [], isLoading, isError } = useGetBooksQuery();
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(1);
   const [activeItem, setActiveItem] = useState(0);
@@ -40,8 +40,8 @@ export const Navbar = () => {
     setActiveItem(id);
   };
   useEffect(() => {
-    if (!isLoading) setOpen(true);
-  }, [isLoading]);
+    if (!isLoading && !isError) setOpen(true);
+  }, [isLoading, isError]);
 
   const counterBooks = (categoryName) => {
     let counter = 0;
@@ -96,7 +96,7 @@ export const Navbar = () => {
                 key={cat.id}
                 name={cat.name}
                 quantity={counterBooks(cat.name)}
-                link={cat.path}
+                link={`books/${cat.path}`}
                 id={cat.id}
                 active={activeItem}
                 handleClickItem={handleClickItem}

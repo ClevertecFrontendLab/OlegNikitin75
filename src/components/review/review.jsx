@@ -2,6 +2,7 @@ import React from 'react';
 import { Rating } from '../rating/rating';
 import styles from './review.module.css';
 import { Avatar } from '../avatar';
+import { getDate } from '../../utils/helpers';
 
 export const Review = ({ name, date, rating, text, avatar }) => (
   <li className={styles.review}>
@@ -9,7 +10,7 @@ export const Review = ({ name, date, rating, text, avatar }) => (
       <Avatar imgUrl={avatar} size='small' />
       <div className={styles.review_head__box}>
         <span>{name}</span>
-        <span>{date}</span>
+        <span>{getDate(date, true)}</span>
       </div>
     </div>
     <Rating rating={rating} />

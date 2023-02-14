@@ -3,6 +3,7 @@
   margin-bottom: 42px;
 }
 .container {
+  position: relative;
   max-width: 1150px;
   padding: 0 20px;
   margin: 0 auto;

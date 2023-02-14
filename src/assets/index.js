@@ -21,6 +21,7 @@ import starFill from './icons/star-fill.svg';
 import burger from './icons/burger.svg';
 import slash from './icons/slash.svg';
 import loader from './icons/loader.svg';
+import error from './icons/error-icon.svg';
 
 import avatar from './img/avatar.png';
 import avatarDefault from './img/avatar-default.png';
@@ -52,4 +53,5 @@ export {
   burger,
   slash,
   loader,
+  error,
 };
