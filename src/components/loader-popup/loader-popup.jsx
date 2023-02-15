@@ -8,7 +8,7 @@ const modal = document.getElementById('modal');
 export const LoaderPopup = ({ isLoading }) => {
   if (isLoading) {
     return createPortal(
-      <div className={styles.loader_popup}>
+      <div className={styles.loader_popup} data-test-id='loader'>
         <img src={loader} alt='loader' />
       </div>,
       modal

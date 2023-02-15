@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { arrow, arrowHover, arrowUp } from '../../assets';
 import { TabItem } from '../tabitem/tab-item';
 import styles from './navbar.module.css';
@@ -42,6 +42,18 @@ export const Navbar = () => {
   useEffect(() => {
     if (!isLoading && !isError) setOpen(true);
   }, [isLoading, isError]);
+  const { category } = useParams();
+
+  useEffect(() => {
+    const categoryId = categories.find((item) => item.path === category);
+    if (categoryId) {
+      sessionStorage.setItem('categoryId', categoryId.id);
+    }
+    if (category === 'all') {
+      sessionStorage.setItem('categoryId', '0');
+    }
+    setActiveItem(Number(sessionStorage.getItem('categoryId')));
+  }, [category, categories]);
 
   const counterBooks = (categoryName) => {
     let counter = 0;

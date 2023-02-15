@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styles from './header.module.css';
 import { logo } from '../../assets';
 import { Avatar } from '../avatar';
@@ -15,9 +14,9 @@ export const Header = () => {
       <div className={styles.container}>
         <div className={styles.inner}>
           <div className={styles.inner_left}>
-            <Link className={styles.logo} to='/'>
+            <div className={styles.logo}>
               <img src={logo} alt='logo' />
-            </Link>
+            </div>
             <button
               data-test-id='button-burger'
               id='burger-btn'

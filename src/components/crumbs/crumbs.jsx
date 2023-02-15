@@ -12,7 +12,7 @@ export const Crumbs = ({ title, categories }) => {
         <div className={styles.inner}>
           <ul className={styles.crumbs_category}>
             {categories?.map((cat) => (
-              <li key={getId()} onClick={() => navigate(-2)} onKeyDown={() => navigate(-2)} role='presentation'>
+              <li key={getId()} onClick={() => navigate(-1)} onKeyDown={() => navigate(-1)} role='presentation'>
                 <span className={styles.crumbs_link}>{cat}</span>
               </li>
             ))}
@@ -21,14 +21,7 @@ export const Crumbs = ({ title, categories }) => {
           <span>
             <img className={styles.crumbs_img} src={slash} alt='icon' />
           </span>
-          <span
-            className={`${styles.crumbs_link} ${styles.crumbs_link__title}`}
-            onClick={() => navigate(-1)}
-            onKeyDown={() => navigate(-2)}
-            role='presentation'
-          >
-            {title}
-          </span>
+          <span className={`${styles.crumbs_link} ${styles.crumbs_link__title}`}>{title}</span>
         </div>
       </div>
     </div>
