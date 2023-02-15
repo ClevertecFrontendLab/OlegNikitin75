@@ -7,19 +7,18 @@ import { LoaderPopup } from '../loader-popup/loader-popup';
 import { ErrorMessage } from '../error-message';
 
 export const LayoutMainPage = () => {
-  const { isLoading: loadingBooks, isError } = useGetBooksQuery();
-  const { isLoading: loadingCategories } = useGetCategoriesQuery();
-
-  if (loadingBooks && loadingCategories) {
-    return <LoaderPopup isLoading={loadingBooks} />;
-  }
+  const { isLoading: loadingBooks, isError: errorBooks } = useGetBooksQuery();
+  const { isLoading: loadingCategories, isError: errorCategories } = useGetCategoriesQuery();
 
   return (
-    <div className={styles.container}>
-      {isError && <ErrorMessage />}
-      <div className={styles.inner}>
-        <Navbar />
-        <Outlet />
+    <div>
+      {loadingBooks && loadingCategories && <LoaderPopup isLoading={loadingBooks} />}
+      <div className={styles.container}>
+        <div className={styles.inner}>
+          <Navbar />
+          {(errorCategories || errorBooks) && <ErrorMessage />}
+          {!errorBooks && !errorCategories && <Outlet />}
+        </div>
       </div>
     </div>
   );
