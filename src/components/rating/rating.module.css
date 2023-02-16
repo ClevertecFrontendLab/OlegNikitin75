@@ -1,0 +1,20 @@
+.rating_box {
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+.rating_box p {
+  color: var(--light-gray);
+}
+.rating_box span {
+  color: var(--black);
+}
+.rating_list {
+  display: flex;
+  gap: 6px;
+}
+.rating_all {
+  font-weight: 700;
+  font-size: 18px;
+}

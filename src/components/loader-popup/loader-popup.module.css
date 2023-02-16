@@ -1,0 +1,27 @@
+.loader_popup{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(54, 54, 54, 0.3);
+  backdrop-filter: blur(10px);
+}
+.loader_popup img{
+  animation: rotate 1s linear infinite;
+}
+@keyframes rotate {
+  0%   {transform: rotate(0deg)}
+  100% {transform: rotate(360deg)}
+}
+@media screen and (max-width: 768px) {
+  .loader_popup img{
+    width: 44px;
+    height: 44px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .loader_popup img{
+    width: 22px;
+    height: 22px;
+  }
+}
