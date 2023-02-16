@@ -1,8 +1,7 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import styles from './crumbs.module.css';
 import { slash } from '../../assets';
-import { getId } from '../../utils/helpers';
 
 export const Crumbs = ({ title, categories }) => {
   const navigate = useNavigate();
@@ -10,14 +9,14 @@ export const Crumbs = ({ title, categories }) => {
     <div className={styles.crumbs}>
       <div className={styles.container}>
         <div className={styles.inner}>
-          <ul className={styles.crumbs_category}>
-            {categories?.map((cat) => (
-              <li key={getId()} onClick={() => navigate(-1)} onKeyDown={() => navigate(-1)} role='presentation'>
-                <span className={styles.crumbs_link}>{cat}</span>
-              </li>
-            ))}
-          </ul>
-
+          <span
+            onClick={() => navigate(-1)}
+            onKeyDown={() => navigate(-1)}
+            role='presentation'
+            className={styles.crumbs_link}
+          >
+            {categories}
+          </span>
           <span>
             <img className={styles.crumbs_img} src={slash} alt='icon' />
           </span>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './book-page.module.css';
 import { Button } from '../../components/ui/button/button';
@@ -10,22 +10,35 @@ import { getId, ucFirst, useWidthScreen } from '../../utils/helpers';
 import { Navbar } from '../../components/navbar/navbar';
 import { Slider } from '../../components/slider/slider';
 import { arrow, arrowUpBlack, iconNoImageBook } from '../../assets';
-import { useGetBookQuery } from '../../redux';
+import { useGetBookQuery, useGetCategoriesQuery } from '../../redux';
 import { LoaderPopup } from '../../components/loader-popup/loader-popup';
 import { ErrorMessage } from '../../components/error-message';
 
 export const BookPage = () => {
-  const { bookId } = useParams();
+  const { category, bookId } = useParams();
   const { data: book = {}, isLoading, isError } = useGetBookQuery(bookId);
+  const { data: categories = [] } = useGetCategoriesQuery(bookId);
+  const [stateCategories, setStateCategories] = useState('');
   const { width } = useWidthScreen();
   const lengthSlider = book?.images?.length;
   const [showReview, setShowReview] = useState(false);
   const handleClick = () => {
     setShowReview(!showReview);
   };
+  useEffect(() => {
+    const bookCategories = categories.find((item) => item.path === category);
+
+    if (bookCategories) {
+      setStateCategories(bookCategories.name);
+    }
+    if (category === 'all') {
+      setStateCategories('Все книги');
+    }
+  }, [category, categories]);
   if (isLoading) {
     return <LoaderPopup isLoading={isLoading} />;
   }
+
   return (
     <div className={styles.book}>
       {width <= 960 && <Navbar />}
@@ -34,7 +47,7 @@ export const BookPage = () => {
           <ErrorMessage />
         </div>
       )}
-      <Crumbs title={book.title} categories={book.categories} />
+      <Crumbs title={book.title} categories={stateCategories} />
       {!isError && (
         <div className={styles.container}>
           <div className={styles.inner}>

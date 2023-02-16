@@ -13,6 +13,7 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(1);
   const [activeItem, setActiveItem] = useState(0);
+  const [loaded, setLoaded] = useState(false);
   const [mobileMenu, closeMobileMenu] = useMobileMenuStore((state) => [state.mobileMenu, state.closeMobileMenu]);
   const { width } = useWidthScreen();
   const menuRef = useRef(null);
@@ -39,12 +40,10 @@ export const Navbar = () => {
   const handleClickItem = (id) => {
     setActiveItem(id);
   };
-  useEffect(() => {
-    if (!isLoading && !isError) setOpen(true);
-  }, [isLoading, isError]);
   const { category } = useParams();
 
   useEffect(() => {
+    if (loaded) return;
     const categoryId = categories.find((item) => item.path === category);
     if (categoryId) {
       sessionStorage.setItem('categoryId', categoryId.id);
@@ -53,7 +52,12 @@ export const Navbar = () => {
       sessionStorage.setItem('categoryId', '0');
     }
     setActiveItem(Number(sessionStorage.getItem('categoryId')));
-  }, [category, categories]);
+    setLoaded(true);
+  }, [categories, category, loaded]);
+
+  useEffect(() => {
+    if (!isLoading && !isError) setOpen(true);
+  }, [isLoading, isError]);
 
   const counterBooks = (categoryName) => {
     let counter = 0;
