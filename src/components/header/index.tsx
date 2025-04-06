@@ -1,9 +1,8 @@
 import { Box, Container, Flex, Image } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 
 import { getBreadcrumbsItems } from '~/lib/get-breadcrumbs-items';
-import { getHomePageRoute } from '~/lib/routes';
 
 import { Breadcrumbs, IBreadcrumbsProps } from '../breadcrumb';
 import { UserCard } from '../user-card';
@@ -21,9 +20,9 @@ export const Header = () => {
         <Box as='header' bg='primary'>
             <Container maxWidth={1920} pl={4} pr={14} py={4}>
                 <Flex justifyContent='space-between' align='center'>
-                    <Link to={getHomePageRoute()}>
+                    <Box w='256px'>
                         <Image src='/image/logo.svg' alt='logo' width={100} height={30} />
-                    </Link>
+                    </Box>
                     <Breadcrumbs breadcrumbs={breadcrumbs} />
                     <UserCard />
                 </Flex>

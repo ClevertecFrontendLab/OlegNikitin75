@@ -6,13 +6,18 @@ export interface IBreadcrumbsProps {
 }
 
 export const Breadcrumbs: FC<IBreadcrumbsProps> = ({ breadcrumbs }) => (
-    <Breadcrumb separator={<ChevronRightIcon color='gray.500' />}>
-        {breadcrumbs.map((item, index) => (
-            <Box key={index}>
-                <BreadcrumbItem>
-                    <BreadcrumbLink href={item.href}>{item.name}</BreadcrumbLink>
+    <Box pl={6} flex={1}>
+        <Breadcrumb pl={6} flex={1} separator={<ChevronRightIcon />} spacing='8px'>
+            {breadcrumbs.map((item, index) => (
+                <BreadcrumbItem key={index} isCurrentPage={index === breadcrumbs.length - 1}>
+                    <BreadcrumbLink
+                        href={item.href}
+                        opacity={index === breadcrumbs.length - 1 ? 1 : 0.64}
+                    >
+                        {item.name}{' '}
+                    </BreadcrumbLink>
                 </BreadcrumbItem>
-            </Box>
-        ))}
-    </Breadcrumb>
+            ))}
+        </Breadcrumb>
+    </Box>
 );

@@ -9,7 +9,7 @@ import {
     Text,
 } from '@chakra-ui/react';
 import { FC, useEffect, useState } from 'react';
-import { NavLink as BrowserLink, useNavigate } from 'react-router';
+import { NavLink as BrowserLink, useLocation, useNavigate } from 'react-router';
 
 import { IMenuItem } from '~/constants/types';
 interface INavbarProps {
@@ -17,6 +17,8 @@ interface INavbarProps {
 }
 
 export const Navbar: FC<INavbarProps> = ({ items }) => {
+    const location = useLocation();
+
     const [itemSubMenyActive, setItemSubMenyActive] = useState(0);
     const [expandedIndexes, setExpandedIndexes] = useState(() => {
         if (typeof window !== 'undefined') {
@@ -35,12 +37,16 @@ export const Navbar: FC<INavbarProps> = ({ items }) => {
     useEffect(() => {
         localStorage.setItem('accordionExpandedIndexes', JSON.stringify(expandedIndexes));
     }, [expandedIndexes]);
+    useEffect(() => {
+        if (location.pathname === '/') {
+            localStorage.setItem('accordionExpandedIndexes', JSON.stringify([-1]));
+        }
+    }, [location]);
 
     const handleAccordionChange = (newIndexes: number[]) => {
         setExpandedIndexes(newIndexes);
     };
     const handleAccordionLink = (index: number) => {
-        // setItemMenyActive(index);
         setItemSubMenyActive(index);
     };
     const navigate = useNavigate();

@@ -228,8 +228,8 @@ export const MENU_ITEMS: IMenuItem[] = [
             {
                 name: 'Рулеты',
                 link: '/desserts/rolls',
-                slug: 'cakes',
-                getRoute: () => getDessertsAndBakeryPageRoute({ slug: 'cakes' }),
+                slug: 'rolls',
+                getRoute: () => getDessertsAndBakeryPageRoute({ slug: 'rolls' }),
             },
             {
                 name: 'Кексы и маффины',

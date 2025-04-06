@@ -27,10 +27,6 @@ export const AppRouter = () => (
             element={<AppetizersPage />}
         />
         <Route
-            path={routes.getAppetizersPageRoute({ slug: ':slug' })}
-            element={<AppetizersPage />}
-        />
-        <Route
             path={routes.getFirstCoursesPageRoute({ slug: ':slug' })}
             element={<FirstCoursesPage />}
         />
@@ -38,10 +34,7 @@ export const AppRouter = () => (
             path={routes.getMainCoursesPageRoute({ slug: ':slug' })}
             element={<MainCoursesPage />}
         />
-        <Route
-            path={routes.getMainCoursesPageRoute({ slug: ':slug' })}
-            element={<MainCoursesPage />}
-        />
+
         <Route
             path={routes.getDessertsAndBakeryPageRoute({ slug: ':slug' })}
             element={<DessertsPage />}
@@ -50,10 +43,7 @@ export const AppRouter = () => (
             path={routes.getGrillDishesPageRoute({ slug: ':slug' })}
             element={<GrillDishesPage />}
         />
-        <Route
-            path={routes.getVeganCuisinePageRoute({ slug: ':slug' })}
-            element={<VeganCuisinePage />}
-        />
+        <Route path={routes.getVeganPageRoute({ slug: ':slug' })} element={<VeganCuisinePage />} />
         <Route
             path={routes.getKidsDishesPageRoute({ slug: ':slug' })}
             element={<KidsDishesPage />}

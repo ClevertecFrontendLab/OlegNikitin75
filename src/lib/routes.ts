@@ -33,7 +33,7 @@ export const getMainCoursesPageRoute = ({ slug }: FirstCoursesPageRouteParams) =
 export const dessertsAndBakeryPageRouteParams = getRouteParams({ slug: true });
 export type DessertsAndBakeryPageRouteParams = typeof dessertsAndBakeryPageRouteParams;
 export const getDessertsAndBakeryPageRoute = ({ slug }: DessertsAndBakeryPageRouteParams) =>
-    `/desserts-courses/${slug}`;
+    `/desserts/${slug}`;
 
 //Гриль
 export const grillDishesPageRouteParams = getRouteParams({ slug: true });

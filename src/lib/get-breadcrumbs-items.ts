@@ -1,25 +1,38 @@
-//import { NAME_MATCHER } from '~/constants/name-matcher';
+import { NAME_MATCHER } from '~/constants/name-matcher';
 
 export const getBreadcrumbsItems = (location: { pathname: string }) => {
+    const path = location.pathname;
+    const breadcrumbs: { name: string; href: string }[] = [{ name: 'Главная', href: '/' }];
+
     const brokenPath = location.pathname.split('/');
 
-    const breadcrumbs: { name: string; href: string }[] = [];
+    if (path in NAME_MATCHER) {
+        const transcriptPath = NAME_MATCHER[path as keyof typeof NAME_MATCHER];
 
-    brokenPath.forEach((item, index) => {
-        if (item) {
-            // const path = location.pathname;
-            // const path=NAME_MATCHER[path as keyof typeof NAME_MATCHER]
+        const currentCategoryPath = `/${brokenPath[1]}`;
 
-            breadcrumbs.push({
-                name: item,
-                href: brokenPath.slice(0, index + 1).join('/'),
-            });
-        }
-    });
-    if (breadcrumbs.length === 0) {
-        breadcrumbs.push({
-            name: 'Главная',
-            href: '/',
+        const transcriptCurrentCategoryPath =
+            NAME_MATCHER[currentCategoryPath as keyof typeof NAME_MATCHER];
+
+        brokenPath.forEach((item, index) => {
+            if (item) {
+                if (index === 1) {
+                    const allKeys = Object.keys(NAME_MATCHER);
+                    const currentIndex = allKeys.indexOf(currentCategoryPath);
+                    const nextIndex = currentIndex + 1;
+                    const defaultPathCurrentCategoryItem = allKeys[nextIndex];
+
+                    breadcrumbs.push({
+                        name: transcriptCurrentCategoryPath,
+                        href: defaultPathCurrentCategoryItem,
+                    });
+                } else {
+                    breadcrumbs.push({
+                        name: transcriptPath,
+                        href: brokenPath.slice(0, index + 1).join('/'),
+                    });
+                }
+            }
         });
     }
 
