@@ -57,7 +57,15 @@ export const Navbar: FC<INavbarProps> = ({ items }) => {
     };
 
     return (
-        <Box w='256px' pt={6} pb={8} display='flex' flexDir='column' justifyContent='space-between'>
+        <Box
+            w='256px'
+            pt={6}
+            pr={6}
+            pb={8}
+            display='flex'
+            flexDir='column'
+            justifyContent='space-between'
+        >
             <Box as='nav' display='flex' flexDir='column' maxH='80%' overflowY='auto'>
                 <Accordion allowToggle index={expandedIndexes} onChange={handleAccordionChange}>
                     {items.map((item, index) => (

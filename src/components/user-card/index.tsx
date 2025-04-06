@@ -11,7 +11,7 @@ export const UserCard: FC<IUserCardProps> = ({
 }) => (
     <Box>
         <Flex alignItems='center' gap={3}>
-            <Box>
+            <Box w={12} h={12} rounded='full' overflow='hidden'>
                 <Image src={imageUrl} alt='user-card' />
             </Box>
             <Box>
