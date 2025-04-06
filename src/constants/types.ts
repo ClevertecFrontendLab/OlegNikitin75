@@ -4,5 +4,7 @@ export interface IMenuItem {
     subMenuItems: {
         name: string;
         link: string;
+        slug: string;
+        getRoute: () => string;
     }[];
 }

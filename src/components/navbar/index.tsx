@@ -86,7 +86,7 @@ export const Navbar: FC<INavbarProps> = ({ items }) => {
                                         pointerEvents={
                                             itemSubMenyActive === index ? 'none' : 'auto'
                                         }
-                                        to={subItem.link}
+                                        to={subItem.getRoute()}
                                     >
                                         <Box
                                             as='span'
