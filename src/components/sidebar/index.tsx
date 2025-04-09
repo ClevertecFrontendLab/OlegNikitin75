@@ -6,12 +6,14 @@ import { AppBadge } from '../app-badge';
 
 export const Sidebar = () => (
     <Box
-        position='relative'
+        position='fixed'
+        top={24}
+        right='65px'
+        zIndex={10}
         display='flex'
         flexDir='column'
         justifyContent='space-between'
-        h='100%'
-        w='208px'
+        h='100vh'
     >
         <Stack display='flex' flexDir='column' gap={6} w='208px' alignItems='flex-end'>
             {sidebarItems.map((item, index) => (
@@ -21,10 +23,8 @@ export const Sidebar = () => (
         <Button
             _hover='none'
             position='absolute'
-            bottom={0}
-            right='-50%'
-            transform='translateX(-50%)'
-            mr='-50%'
+            bottom={24}
+            right='-50px'
             w='208px'
             h='208px'
             display='flex'

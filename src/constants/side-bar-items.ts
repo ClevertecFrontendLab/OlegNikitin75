@@ -6,11 +6,11 @@ export const SIDEBAR_ITEMS: IBadgeItem[] = [
         quantity: 187,
     },
     {
-        iconUrl: '/icons/followers.svg',
+        iconUrl: '/icons/users.svg',
         quantity: 589,
     },
     {
-        iconUrl: '/icons/following.svg',
+        iconUrl: '/icons/likes.svg',
         quantity: 587,
     },
 ];

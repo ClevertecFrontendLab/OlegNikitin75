@@ -126,4 +126,5 @@ export const NAME_MATCHER = {
     '/drinks/kvass': 'Квас',
     '/drinks/cocktails': 'Коктейли',
     '/drinks/alcohol': 'Алкогольные',
+    '/juiciest': 'Самое сочное',
 };

@@ -23,7 +23,7 @@ interface IPageLayoutProps {
 
 export const PageLayout: FC<IPageLayoutProps> = ({ children, heading, description }) => (
     <Box flex='1'>
-        <Box textAlign='center'>
+        <Box textAlign='center' w='100%' px={4} pt={24} pb={10}>
             <Heading as='h2' size='2xl' mb={3}>
                 {heading}
             </Heading>

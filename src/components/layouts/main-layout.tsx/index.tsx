@@ -13,17 +13,12 @@ interface IMainLayoutProps {
 export const MainLayout: FC<IMainLayoutProps> = ({ children }) => (
     <Box h='100vh'>
         <Header />
-        <Container maxWidth={1920} pl={0} pr={14} py={4}>
-            <Box
-                as='main'
-                h={['100vh', 'calc(100vh - 80px)']}
-                display='flex'
-                justifyContent='space-between'
-            >
-                <Navbar items={menuItems} />
+        <Container maxWidth={1920} py={4}>
+            <Navbar items={menuItems} />
+            <Box as='main' maxW='1360px' h={['100vh', 'calc(100vh - 80px)']} mx='auto'>
                 {children}
-                <Sidebar />
             </Box>
+            <Sidebar />
         </Container>
     </Box>
 );

@@ -14,7 +14,7 @@ import {
     getVeganPageRoute,
 } from '~/lib/routes';
 
-import { IMenuItem } from './types';
+import { IMenuItem } from '../types/types';
 
 export const MENU_ITEMS: IMenuItem[] = [
     {

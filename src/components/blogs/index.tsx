@@ -37,7 +37,7 @@ const blogs = [
 ];
 
 export const Blogs = () => (
-    <Box as='section' bg='secondary' w='100%' p={6}>
+    <Box as='section' bg='secondary' w='100%' p={6} rounded='2xl'>
         <Box display='flex' justifyContent='space-between' alignItems='center' mb={6}>
             <Heading as='h3' size='xl' mb={3} fontWeight='regular'>
                 Кулинарные блоги

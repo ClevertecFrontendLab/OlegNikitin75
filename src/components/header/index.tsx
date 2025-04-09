@@ -17,8 +17,8 @@ export const Header = () => {
     }, [location]);
 
     return (
-        <Box as='header' bg='primary'>
-            <Container maxWidth={1920} pl={4} pr={14} py={4}>
+        <Box as='header' bg='primary' position='fixed' w='100%' zIndex={100}>
+            <Container maxWidth={1920} pl={4} py={4}>
                 <Flex justifyContent='space-between' align='center'>
                     <Box w='256px'>
                         <Image src='/image/logo.svg' alt='logo' width={100} height={30} />

@@ -5,13 +5,14 @@ import {
     AccordionItem,
     AccordionPanel,
     Box,
+    Button,
     Image,
     Text,
 } from '@chakra-ui/react';
 import { FC, useEffect, useState } from 'react';
 import { NavLink as BrowserLink, useLocation, useNavigate } from 'react-router';
 
-import { IMenuItem } from '~/constants/types';
+import { IMenuItem } from '~/types/types';
 interface INavbarProps {
     items: IMenuItem[];
 }
@@ -19,7 +20,13 @@ interface INavbarProps {
 export const Navbar: FC<INavbarProps> = ({ items }) => {
     const location = useLocation();
 
-    const [itemSubMenyActive, setItemSubMenyActive] = useState(0);
+    const [itemSubMenyActive, setItemSubMenyActive] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem('accordionExpandedIndexesSubMenu');
+            return saved ? JSON.parse(saved) : 0;
+        }
+    });
+
     const [expandedIndexes, setExpandedIndexes] = useState(() => {
         if (typeof window !== 'undefined') {
             const saved = localStorage.getItem('accordionExpandedIndexes');
@@ -29,14 +36,19 @@ export const Navbar: FC<INavbarProps> = ({ items }) => {
     });
     useEffect(() => {
         const savedIndexes = localStorage.getItem('accordionExpandedIndexes');
+        const savedIndexSubMenu = localStorage.getItem('accordionExpandedIndexesSubMenu');
 
         if (savedIndexes) {
             setExpandedIndexes(JSON.parse(savedIndexes));
         }
-    }, []);
+        if (savedIndexSubMenu) {
+            setItemSubMenyActive(JSON.parse(savedIndexSubMenu));
+        }
+    }, [location]);
     useEffect(() => {
         localStorage.setItem('accordionExpandedIndexes', JSON.stringify(expandedIndexes));
-    }, [expandedIndexes]);
+        localStorage.setItem('accordionExpandedIndexesSubMenu', JSON.stringify(itemSubMenyActive));
+    }, [expandedIndexes, itemSubMenyActive]);
     useEffect(() => {
         if (location.pathname === '/') {
             localStorage.setItem('accordionExpandedIndexes', JSON.stringify([-1]));
@@ -46,7 +58,7 @@ export const Navbar: FC<INavbarProps> = ({ items }) => {
     const handleAccordionChange = (newIndexes: number[]) => {
         setExpandedIndexes(newIndexes);
     };
-    const handleAccordionLink = (index: number) => {
+    const handleAccordionLinkClick = (index: number) => {
         setItemSubMenyActive(index);
     };
     const navigate = useNavigate();
@@ -58,15 +70,17 @@ export const Navbar: FC<INavbarProps> = ({ items }) => {
 
     return (
         <Box
-            w='256px'
+            position='fixed'
+            w='285px'
+            h='100vh'
             pt={6}
-            pr={6}
+            pr={10}
             pb={8}
             display='flex'
             flexDir='column'
             justifyContent='space-between'
         >
-            <Box as='nav' display='flex' flexDir='column' maxH='80%' overflowY='auto'>
+            <Box id='navbar' as='nav' display='flex' flexDir='column' maxH='80%' overflowY='auto'>
                 <Accordion allowToggle index={expandedIndexes} onChange={handleAccordionChange}>
                     {items.map((item, index) => (
                         <AccordionItem borderColor='white' key={index}>
@@ -74,7 +88,7 @@ export const Navbar: FC<INavbarProps> = ({ items }) => {
                                 onClick={() => handleItemClick(index)}
                                 px={2}
                                 py={3}
-                                gap={3}
+                                gap={2}
                                 _hover={{ bg: 'primary' }}
                                 _expanded={{ bg: 'activeItem', fontWeight: 'bold' }}
                             >
@@ -88,14 +102,14 @@ export const Navbar: FC<INavbarProps> = ({ items }) => {
                                 {item.subMenuItems.map((subItem, index) => (
                                     <Box
                                         className='group'
-                                        onClick={() => handleAccordionLink(index)}
+                                        onClick={() => handleAccordionLinkClick(index)}
                                         as={BrowserLink}
                                         display='block'
                                         key={index}
                                         w='100%'
                                         py='6px'
                                         _hover={{ bg: 'primary' }}
-                                        pl={12}
+                                        pl={10}
                                         fontWeight={itemSubMenyActive === index ? 'bold' : 'normal'}
                                         pointerEvents={
                                             itemSubMenyActive === index ? 'none' : 'auto'
@@ -124,6 +138,16 @@ export const Navbar: FC<INavbarProps> = ({ items }) => {
                 <Text opacity='64%'>
                     Все права защищены, ученический файл, ©Клевер Технолоджи, 2025
                 </Text>
+                <Button bg='transparent' px={0} _hover={{ opacity: '0.6' }}>
+                    <Image
+                        src='/icons/logout-icon.svg'
+                        alt='logout-icon'
+                        width={4}
+                        height={4}
+                        mr={3}
+                    />
+                    Выйти
+                </Button>
             </Box>
         </Box>
     );
