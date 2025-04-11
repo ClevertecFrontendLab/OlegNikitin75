@@ -9,10 +9,11 @@ export const theme = extendTheme({
         textGreen: '#2db100',
         black: '#000',
         white: '#fff',
+        darkGreen: '#134B00',
     },
 
     breakpoints: {
-        mobile: '0px',
+        mobile: '360px',
         tablet: '768px',
         desktop: '1440px',
         wide: '1920px',

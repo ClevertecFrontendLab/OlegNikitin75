@@ -1,11 +1,11 @@
 import { Box, Button } from '@chakra-ui/react';
 
-import { PageLayout } from '~/components/layouts/page-layout';
-import { RecipeGroupList } from '~/components/recipe-group-list';
-import { Relevant } from '~/components/relevant';
-import { TabList } from '~/components/tab-list';
 import { MENU_ITEMS } from '~/constants/menu-items';
 import { RECIPE_ITEMS_VEGAN as veganItems } from '~/constants/recipe-items';
+import { PageLayout } from '~/layouts/page-layout';
+import { RecipeGroupList } from '~/modules/recipe-group-list';
+import { Relevant } from '~/modules/relevant';
+import { TabList } from '~/modules/tab-list';
 
 export const VeganCuisinePage = () => (
     <PageLayout

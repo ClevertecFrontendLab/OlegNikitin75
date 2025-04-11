@@ -1,9 +1,9 @@
 import { Box, Button } from '@chakra-ui/react';
 
-import { PageLayout } from '~/components/layouts/page-layout';
-import { RecipeGroupList } from '~/components/recipe-group-list';
-import { Relevant } from '~/components/relevant';
 import { RECIPE_ITEMS_JUICIEST as juisiestItems } from '~/constants/recipe-items';
+import { PageLayout } from '~/layouts/page-layout';
+import { RecipeGroupList } from '~/modules/recipe-group-list';
+import { Relevant } from '~/modules/relevant';
 
 export const JuiciestPage = () => (
     <PageLayout heading='Самое сочное'>

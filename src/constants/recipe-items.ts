@@ -39,6 +39,16 @@ export const RECIPE_ITEMS_SLIDER = [
         favorites: null,
         likes: null,
     },
+    {
+        title: 'Оладьи на кефире "Пышные"',
+        description:
+            'Очень вкусные и нежные оладьи на кефире. Настоятельно рекомендую пышные кефирные оладьи на завтрак.',
+        imageUrl: '/image/home/3.jpg',
+        category: 'Десерты и выпечка',
+        iconUrl: '/icons/5.svg',
+        favorites: null,
+        likes: 1,
+    },
 ];
 export const RECIPE_ITEMS_HOME = [
     {
@@ -60,6 +70,13 @@ export const RECIPE_ITEMS_HOME = [
         iconUrl: '/icons/4.svg',
         favorites: 159,
         likes: 257,
+        recommended: {
+            author: {
+                firstName: 'Alex',
+                lastName: 'Cook',
+                avatarUrl: '/image/user-avatar-2.png',
+            },
+        },
     },
     {
         title: 'Лапша с курицей и шафраном',
@@ -80,6 +97,13 @@ export const RECIPE_ITEMS_HOME = [
         iconUrl: '/icons/3.svg',
         favorites: 124,
         likes: 324,
+        recommended: {
+            author: {
+                firstName: 'Елена',
+                lastName: 'Высоцкая',
+                avatarUrl: '/image/user-avatar-1.png',
+            },
+        },
     },
 ];
 export const RECIPE_ITEMS_VEGAN = [
@@ -112,6 +136,13 @@ export const RECIPE_ITEMS_VEGAN = [
         iconUrl: '/icons/3.svg',
         favorites: 124,
         likes: 324,
+        recommended: {
+            author: {
+                firstName: 'Елена',
+                lastName: 'Высоцкая',
+                avatarUrl: '/image/user-avatar-1.png',
+            },
+        },
     },
     {
         title: 'Овощная лазанья из лаваша',

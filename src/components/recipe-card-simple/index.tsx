@@ -10,15 +10,20 @@ export const RecipeCardSimple: FC<IRecipeCardSimpleProps> = ({ iconUrl, title })
         borderColor='blackAlpha.200'
         display='flex'
         justifyContent='space-between'
-        px={6}
-        py='14px'
+        py={{ mobile: '9px', tablet: '9px', desktop: '9px', wide: '14px' }}
+        px={{ mobile: '12px', tablet: '12px', desktop: '12px', wide: '24px' }}
         _hover={{
-            shadow: 'lg',
+            shadow: '0px 2px 4px -1px #207E000F, 0px 4px 6px -1px #207E001A',
         }}
     >
         <Box fontSize='20px' fontWeight='medium' display='flex' gap={2} alignItems='center'>
             <Image src={iconUrl} w={6} h={6} />
-            <Heading noOfLines={1} as='h4' fontSize='20px' fontWeight='medium'>
+            <Heading
+                noOfLines={1}
+                as='h4'
+                fontSize={{ mobile: '16px', tablet: '16px', desktop: '18px', wide: '20px' }}
+                fontWeight='medium'
+            >
                 {title}
             </Heading>
         </Box>
@@ -26,7 +31,7 @@ export const RecipeCardSimple: FC<IRecipeCardSimpleProps> = ({ iconUrl, title })
             w='87px'
             h='32px'
             rounded='md'
-            fontSize='14px'
+            fontSize={{ mobile: '12px', tablet: '12px', desktop: '12px', wide: '14px' }}
             fontWeight='semibold'
             bg='transparent'
             border='1px'

@@ -9,7 +9,7 @@ export const TabItem: FC<ITabItemProps> = ({ name, link, onClick, tabItemIndex, 
         as={BrowserLink}
         onClick={() => onClick(index)}
         to={link}
-        px={4}
+        px={3}
         py={2}
         _hover={{ textDecoration: 'none', color: 'textGreen' }}
         pointerEvents={tabItemIndex === index ? 'none' : 'auto'}

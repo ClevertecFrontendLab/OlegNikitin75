@@ -1,15 +1,15 @@
-import { Blogs } from '~/components/blogs';
-import { PageLayout } from '~/components/layouts/page-layout';
-import { RecipeGroupList } from '~/components/recipe-group-list';
-import { Relevant } from '~/components/relevant';
-import { Slider } from '~/components/slider';
 import { RECIPE_ITEMS_SLIDER as sliderItems } from '~/constants/recipe-items';
 import { RECIPE_ITEMS_HOME as homeItems } from '~/constants/recipe-items';
+import { PageLayout } from '~/layouts/page-layout';
+import { Blogs } from '~/modules/blogs';
+import { RecipeGroupList } from '~/modules/recipe-group-list';
+import { Relevant } from '~/modules/relevant';
+import { Slider } from '~/modules/slider';
 
 export const HomePage = () => (
     <PageLayout heading='Приятного аппетита!'>
         <Slider items={sliderItems} />
-        <RecipeGroupList title='Самое сочное' items={homeItems} />
+        <RecipeGroupList title='Самое сочное' items={homeItems} isHomePage />
         <Blogs />
         <Relevant
             title='Веганская кухня'

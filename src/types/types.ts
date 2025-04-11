@@ -16,7 +16,7 @@ export interface IRecipeCardItem {
     category: string;
     likes: number | null;
     favorites: number | null;
-    recommended: {
+    recommended?: {
         author: {
             firstName: string;
             lastName: string;

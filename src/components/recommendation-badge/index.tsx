@@ -17,7 +17,6 @@ export const RecommendationBadge: FC<Iindex> = ({
         bottom={4}
         left={4}
         bg='avocado'
-        // bg={{mobile:'red', tablet:'blue', desktop:'green', wide:'yellow'}}
         px={2}
         py={1}
         w='fit-content'

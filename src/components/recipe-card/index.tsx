@@ -1,5 +1,7 @@
-import { Box, Flex, Image } from '@chakra-ui/react';
+import { Box, Flex, Hide, Image, Show } from '@chakra-ui/react';
 import { FC } from 'react';
+
+import { CategoryLabel } from '~/ui/category-label';
 
 import { RecommendationBadge } from '../recommendation-badge';
 import { IRecipeCardProps } from './types/types';
@@ -9,34 +11,60 @@ export const RecipeCard: FC<IRecipeCardProps> = ({
     tag,
     footer,
     body,
+    iconUrl,
+    category,
+    bgColor,
     isVertical = false,
     recommended,
 }) => (
     <Box
         as='article'
-        maxW='668px'
+        w={{ mobile: '100%', tablet: '356px', desktop: '100%', wide: '668px' }}
+        maxW={isVertical ? '232px' : 'auto'}
         border='1px'
         borderColor='blackAlpha.200'
         rounded='xl'
         overflow='hidden'
         _hover={{
-            shadow: 'lg',
+            shadow: '0px 2px 4px -1px #207E000F, 0px 4px 6px -1px #207E001A',
         }}
     >
         <Flex display='flex' flexDir={isVertical ? 'column' : 'row'}>
             {!!imageUrl && (
                 <Box position='relative'>
-                    <Image src={imageUrl} />
-                    {!!recommended && (
-                        <RecommendationBadge
-                            iconUrl={recommended.author.avatarUrl}
-                            firstName={recommended.author.firstName}
-                            lastName={recommended.author.lastName}
-                        />
-                    )}
+                    <Image
+                        src={imageUrl}
+                        w={{ mobile: '158px', tablet: '158px', desktop: '346px', wide: '346px' }}
+                        h={{ mobile: '128px', tablet: '128px', desktop: '244px', wide: '244px' }}
+                    />
+                    <Show below='tablet'>
+                        <Box position='absolute' left={2} top={2}>
+                            <CategoryLabel
+                                iconUrl={iconUrl}
+                                category={category}
+                                bgColor={bgColor}
+                            />
+                        </Box>
+                    </Show>
+                    <Hide below='tablet'>
+                        {!!recommended && (
+                            <RecommendationBadge
+                                iconUrl={recommended.author.avatarUrl}
+                                firstName={recommended.author.firstName}
+                                lastName={recommended.author.lastName}
+                            />
+                        )}
+                    </Hide>
                 </Box>
             )}
-            <Box px={6} py={5} display='flex' flexDirection='column' justifyContent='space-between'>
+            <Box
+                px={{ mobile: '8px', tablet: '8px', desktop: '24px', wide: '24px' }}
+                py={{ mobile: '6px', tablet: '6px', desktop: '20px', wide: '20px' }}
+                display='flex'
+                flex='1'
+                flexDirection='column'
+                justifyContent='space-between'
+            >
                 {!!footer && tag}
                 {body}
                 {!footer && tag}

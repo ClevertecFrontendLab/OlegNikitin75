@@ -11,18 +11,14 @@ export const UserCard: FC<IUserCardProps> = ({
 }) => (
     <Box>
         <Flex alignItems='center' gap={3}>
-            <Box w={12} h={12} rounded='full' overflow='hidden'>
+            <Box w={12} h={12} rounded='full' overflow='hidden' flexShrink={0}>
                 <Image src={imageUrl} alt='user-card' />
             </Box>
             <Box>
-                <Flex alignItems='center' gap={1}>
-                    <Text fontSize='lg' fontWeight='medium'>
-                        {firstName}
-                    </Text>
-                    <Text fontSize='lg' fontWeight='medium'>
-                        {lastName}
-                    </Text>
-                </Flex>
+                <Box as='span' noOfLines={1}>
+                    {firstName} {lastName}
+                </Box>
+
                 <Text color='black' fontSize='sm' opacity={0.6}>
                     {nickname}
                 </Text>

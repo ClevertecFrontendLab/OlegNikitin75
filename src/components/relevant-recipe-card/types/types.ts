@@ -6,9 +6,6 @@ export interface IRecipeCardProps {
     tag: ReactNode;
     body: ReactNode;
     footer?: ReactNode;
-    iconUrl: string;
-    category: string;
-    bgColor: string;
     recommended?: {
         author: {
             firstName: string;
