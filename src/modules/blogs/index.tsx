@@ -1,5 +1,4 @@
-import { ArrowForwardIcon } from '@chakra-ui/icons';
-import { Box, Button, Flex, Heading, Hide, Show, Stack } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Hide, Image, Show, Stack } from '@chakra-ui/react';
 
 import { BlogItem } from '~/components/blog-item';
 
@@ -70,7 +69,7 @@ export const Blogs = () => (
                     alignItems='center'
                 >
                     Все авторы
-                    <ArrowForwardIcon />
+                    <Image src='/icons/arrow-right-icon.svg' alt='' width={4} height={4} />
                 </Button>
             </Hide>
         </Box>
@@ -95,7 +94,7 @@ export const Blogs = () => (
                     alignItems='center'
                 >
                     Все авторы
-                    <ArrowForwardIcon />
+                    <Image src='/icons/arrow-right-icon.svg' alt='' width={4} height={4} />
                 </Button>
             </Flex>
         </Show>
