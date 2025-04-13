@@ -137,8 +137,11 @@ export const Navbar: FC<INavbarProps> = ({ items }) => {
                 <Text fontSize='12px' opacity='24%' pb={4} fontWeight='medium'>
                     Версия программы 03.25
                 </Text>
-                <Text opacity='64%'>
-                    Все права защищены, ученический файл, ©Клевер Технолоджи, 2025
+                <Text opacity='64%' fontSize='14px' fontWeight='medium'>
+                    Все права защищены, ученический файл,
+                </Text>
+                <Text opacity='64%' fontSize='14px' fontWeight='medium'>
+                    ©Клевер Технолоджи, 2025
                 </Text>
                 <Button bg='transparent' px={0} _hover={{ opacity: '0.6' }}>
                     <Image

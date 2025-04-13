@@ -1,5 +1,4 @@
-import { ArrowForwardIcon } from '@chakra-ui/icons';
-import { Box, Flex, Heading, Hide, Link } from '@chakra-ui/react';
+import { Box, Flex, Heading, Hide, Image, Link } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import { Link as BrowserLink } from 'react-router';
 
@@ -21,9 +20,13 @@ export const RecipeGroupList = ({
     trigger?: ReactNode;
     isHomePage?: boolean;
 }) => (
-    <Box mb={{ mobile: 6, tablet: 8, desktop: 10, wide: 10 }}>
+    <Box mb={{ mobile: 6, tablet: 8, desktop: 10, wide: 10 }} mt={3}>
         {!!title && (
-            <Box display='flex' justifyContent='space-between' mb={6}>
+            <Box
+                display='flex'
+                justifyContent='space-between'
+                mb={{ mobile: 3, tablet: 3, desktop: 6, wide: 6 }}
+            >
                 <Heading
                     as='h3'
                     fontSize={{ mobile: '24px', tablet: '24px', desktop: '36px', wide: '48px' }}
@@ -42,12 +45,15 @@ export const RecipeGroupList = ({
                         gap={2}
                         bg='secondary'
                         _hover={{ opacity: 0.6 }}
-                        fontSize='lg'
                         fontWeight='semibold'
                         px={4}
                         rounded='lg'
+                        w={{ desktop: '167px', wide: '197px' }}
+                        h={{ desktop: '40px', wide: '48px' }}
+                        fontSize={{ desktop: '16px', wide: '18px' }}
                     >
-                        Вся подборка <ArrowForwardIcon />
+                        Вся подборка
+                        <Image src='/icons/arrow-right-icon.svg' alt='' width={4} height={4} />
                     </Link>
                 </Hide>
             </Box>
@@ -97,7 +103,8 @@ export const RecipeGroupList = ({
                     h={10}
                     w='167px'
                 >
-                    Вся подборка <ArrowForwardIcon />
+                    Вся подборка{' '}
+                    <Image src='/icons/arrow-right-icon.svg' alt='' width={4} height={4} />
                 </Link>
             </Flex>
         )}

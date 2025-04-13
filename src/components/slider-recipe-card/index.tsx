@@ -28,7 +28,11 @@ export const SliderRecipeCard: FC<ISliderRecipeCardProps> = ({
     >
         <Flex display='flex' flexDir='column' h='100%'>
             <Box position='relative'>
-                <Image src={imageUrl} w='100%' />
+                <Image
+                    src={imageUrl}
+                    w='100%'
+                    h={{ mobile: '128px', tablet: '128px', desktop: '230px', wide: '230px' }}
+                />
                 <Show below='tablet'>
                     <Box position='absolute' left={2} top={2}>
                         <CategoryLabel iconUrl={iconUrl} category={category} bgColor={bgColor} />
@@ -37,8 +41,8 @@ export const SliderRecipeCard: FC<ISliderRecipeCardProps> = ({
             </Box>
 
             <Box
-                px={{ mobile: '8px', tablet: '8px', desktop: '24px', wide: '24px' }}
-                py={{ mobile: '6px', tablet: '6px', desktop: '20px', wide: '20px' }}
+                px={{ mobile: '8px', tablet: '8px', desktop: '12px', wide: '24px' }}
+                py={{ mobile: '6px', tablet: '6px', desktop: '12px', wide: '20px' }}
                 display='flex'
                 flex='1'
                 flexDirection='column'

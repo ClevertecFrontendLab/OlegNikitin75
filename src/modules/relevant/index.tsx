@@ -1,11 +1,22 @@
-import { Box, Flex, Heading, Stack, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 
 import { RecipeCardSimple } from '~/components/recipe-card-simple';
 import { RelevantRecipeCard } from '~/components/relevant-recipe-card';
-import { RecipeBody } from '~/ui/recipe-body';
 import { RecipeTag } from '~/ui/recipe-tag';
+import { RelevantRecipeBody } from '~/ui/relevant-recipe-body';
 
-export const Relevant = ({ title, description }: { title: string; description: string }) => (
+type RelevantProps = {
+    data: {
+        title: string;
+        description: string;
+        items: {
+            title: string;
+            description: string;
+        }[];
+    };
+};
+
+export const Relevant = ({ data }: RelevantProps) => (
     <Box
         display={{ mobile: 'flex' }}
         flexDirection={{ mobile: 'column' }}
@@ -27,19 +38,20 @@ export const Relevant = ({ title, description }: { title: string; description: s
             <Heading
                 as='h3'
                 fontSize={{ mobile: '24px', tablet: '24px', desktop: '36px', wide: '48px' }}
+                w={{ mobile: '328px', tablet: '100%', desktop: '270px', wide: '450px' }}
                 fontWeight='medium'
                 flexShrink={0}
             >
-                {title}
+                {data.title}
             </Heading>
             <Text
-                w={{ mobile: '100%', tablet: '100%', desktop: '500px', wide: '668px' }}
+                w={{ mobile: '320px', tablet: '100%', desktop: '578px', wide: '668px' }}
                 fontWeight='medium'
                 fontSize={{ mobile: '14px', tablet: '14px', desktop: '16px', wide: '16px' }}
                 opacity={0.64}
-                pr={4}
+                pr={{ mobile: 6, tablet: 6, desktop: 14, wide: '60px' }}
             >
-                {description}
+                {data.description}
             </Text>
         </Box>
         <Box
@@ -65,10 +77,10 @@ export const Relevant = ({ title, description }: { title: string; description: s
                         />
                     }
                     body={
-                        <RecipeBody
+                        <RelevantRecipeBody
                             isRelevant
-                            title='Картошка, тушенная с болгарским перцем и фасолью в томатном соусе'
-                            description='Картошка, тушенная с болгарским перцем, фасолью, морковью и луком, -  вариант сытного блюда на каждый день. Фасоль в данном случае заменяет мясо, делая рагу сытным и питательным. Чтобы сократить время  приготовления, возьмём консервированную фасоль. Блюдо хоть и простое, но в полной мере наполнено ароматами и имеет выразительный вкус за счёт  добавления томатной пасты.'
+                            title={data.items[0].title}
+                            description={data.items[0].description}
                         />
                     }
                 />
@@ -84,19 +96,23 @@ export const Relevant = ({ title, description }: { title: string; description: s
                         />
                     }
                     body={
-                        <RecipeBody
+                        <RelevantRecipeBody
                             isRelevant
-                            title='Капустные котлеты'
-                            description='Капустные котлеты по этому рецепту получаются необычайно пышными и  невероятно вкусными. Мягкий вкус и лёгкая пряная нотка наверняка помогут сделать эти чудесные котлеты из капусты одним из ваших любимых овощных  блюд.'
+                            title={data.items[1].title}
+                            description={data.items[1].description}
                         />
                     }
                 />
             </Flex>
-            <Stack w={{ mobile: '100%', tablet: '240px', desktop: '100%', wide: '100%' }}>
+            <Flex
+                flexDirection='column'
+                gap={{ mobile: '12px', tablet: '6px', desktop: '13px' }}
+                w={{ mobile: '100%', tablet: '240px', desktop: '100%', wide: '100%' }}
+            >
                 <RecipeCardSimple iconUrl='/icons/4.svg' title='Стейк для вегетарианцев' />
                 <RecipeCardSimple iconUrl='/icons/4.svg' title='Котлеты из гречки и фасоли' />
                 <RecipeCardSimple iconUrl='/icons/3.svg' title='Сырный суп с лапшой и брокколи' />
-            </Stack>
+            </Flex>
         </Box>
     </Box>
 );

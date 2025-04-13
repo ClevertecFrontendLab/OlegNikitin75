@@ -2,6 +2,7 @@ import { Box, Button } from '@chakra-ui/react';
 
 import { MENU_ITEMS } from '~/constants/menu-items';
 import { RECIPE_ITEMS_VEGAN as veganItems } from '~/constants/recipe-items';
+import { RELEVANT_RECIPE_ITEMS as relevantItems } from '~/constants/relevant-recipe-items';
 import { PageLayout } from '~/layouts/page-layout';
 import { RecipeGroupList } from '~/modules/recipe-group-list';
 import { Relevant } from '~/modules/relevant';
@@ -29,9 +30,6 @@ export const VeganCuisinePage = () => (
                 </Box>
             }
         />
-        <Relevant
-            title='Десерты и выпечка'
-            description='Без них невозможно представить себе ни современную, ни традиционную  кулинарию. Пироги и печенья, блины, пончики, вареники и, конечно, хлеб - рецепты изделий из теста многообразны и невероятно популярны.'
-        />
+        <Relevant data={relevantItems[1]} />
     </PageLayout>
 );

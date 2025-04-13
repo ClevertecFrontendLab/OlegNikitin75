@@ -3,8 +3,8 @@ import { Box, Button, Flex, Heading, Hide } from '@chakra-ui/react';
 
 import { SliderRecipeCard } from '~/components/slider-recipe-card';
 import { IRecipeCardItem } from '~/types/types';
-import { RecipeBody } from '~/ui/recipe-body';
 import { RecipeTag } from '~/ui/recipe-tag';
+import { SliderRecipeBody } from '~/ui/slider-recipe-body';
 
 export const Slider = ({ items }: { items: IRecipeCardItem[] }) => (
     <Box mb={{ mobile: 6, tablet: 8, desktop: 10, wide: 10 }} position='relative' mt={4}>
@@ -43,30 +43,97 @@ export const Slider = ({ items }: { items: IRecipeCardItem[] }) => (
             as='h3'
             fontSize={{ mobile: '24px', tablet: '24px', desktop: '36px', wide: '48px' }}
             fontWeight='medium'
-            mb={6}
+            mb={{ mobile: 3, tablet: 3, desktop: 6, wide: 6 }}
         >
             Новые рецепты
         </Heading>
-        <Flex w='100%' gap={{ mobile: 3, tablet: 3, desktop: 3, wide: 6 }} overflow='hidden'>
-            {items.map((item, index) => (
-                <SliderRecipeCard
-                    key={index}
-                    imageUrl={item.imageUrl}
-                    iconUrl={item.iconUrl}
-                    category={item.category}
-                    bgColor='secondary'
-                    tag={
-                        <RecipeTag
+        {/* <Box
+            position='relative'
+            overflow={{
+                mobile: 'hidden',
+                tablet: 'hidden',
+                desktop: 'hidden',
+                wide: 'hidden',
+            }}
+            h={{ mobile: '220px', tablet: '220px', desktop: '402px', wide: '414px' }}
+        >
+            <Flex position='absolute'  gap={{ mobile: 2, tablet: 3, desktop: 3, wide: 6 }}>
+                {items.map((item, index) => (
+                    <SliderRecipeCard
+                        key={index}
+                        imageUrl={item.imageUrl}
+                        iconUrl={item.iconUrl}
+                        category={item.category}
+                        bgColor='secondary'
+                        tag={
+                            <RecipeTag
+                                iconUrl={item.iconUrl}
+                                category={item.category}
+                                bgColor='secondary'
+                                favorites={item.favorites}
+                                likes={item.likes}
+                            />
+                        }
+                        body={<SliderRecipeBody title={item.title} description={item.description} />}
+                    />
+                ))}
+            </Flex>
+        </Box> */}
+        <Box
+            position='relative'
+            overflow={{
+                mobile: 'visible',
+                tablet: 'hidden',
+                desktop: 'hidden',
+                wide: 'hidden',
+            }}
+            h={{ mobile: '220px', tablet: '220px', desktop: '402px', wide: '414px' }}
+        >
+            <Flex
+                position='absolute'
+                gap={{ mobile: 2, tablet: 3, desktop: 3, wide: 6 }}
+                style={{
+                    width: 'calc(100% )',
+                    scrollSnapType: 'x mandatory',
+                    paddingRight: '12px',
+                    scrollbarWidth: 'none',
+                    msOverflowStyle: 'none',
+                    // overflow: 'scroll',
+                }}
+            >
+                {items.map((item, index) => (
+                    <Box
+                        key={index}
+                        flex={{
+                            mobile: '0 0 40%',
+                            tablet: '0 0 10%',
+                        }}
+                        style={{ scrollSnapAlign: 'start' }}
+                    >
+                        <SliderRecipeCard
+                            imageUrl={item.imageUrl}
                             iconUrl={item.iconUrl}
                             category={item.category}
                             bgColor='secondary'
-                            favorites={item.favorites}
-                            likes={item.likes}
+                            tag={
+                                <RecipeTag
+                                    iconUrl={item.iconUrl}
+                                    category={item.category}
+                                    bgColor='secondary'
+                                    favorites={item.favorites}
+                                    likes={item.likes}
+                                />
+                            }
+                            body={
+                                <SliderRecipeBody
+                                    title={item.title}
+                                    description={item.description}
+                                />
+                            }
                         />
-                    }
-                    body={<RecipeBody title={item.title} description={item.description} />}
-                />
-            ))}
-        </Flex>
+                    </Box>
+                ))}
+            </Flex>
+        </Box>
     </Box>
 );

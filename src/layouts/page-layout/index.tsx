@@ -28,22 +28,33 @@ export const PageLayout: FC<IPageLayoutProps> = ({ children, heading, descriptio
             textAlign='center'
             w='100%'
             pt={{ mobile: 20, tablet: 20, desktop: 24, wide: 24 }}
-            pb={{ mobile: 2, tablet: 2, desktop: 10, wide: 10 }}
+            pb={{ mobile: 0, tablet: 0, desktop: 8, wide: 8 }}
         >
             <Heading
                 as='h2'
                 fontSize={{ mobile: '24px', tablet: '24px', desktop: '48px', wide: '48px' }}
-                mb={3}
+                mb={{
+                    mobile: 0,
+                    tablet: 0,
+                    desktop: 3,
+                    wide: 3,
+                }}
             >
                 {heading}
             </Heading>
             {description && (
-                <Text maxW='700px' mx='auto' opacity='48%'>
+                <Text maxW='700px' mx='auto' opacity='48%' mt={4}>
                     {description}
                 </Text>
             )}
             <Box maxWidth='518px' mx='auto'>
-                <Box display='flex' gap={3} my={8} justifyContent='center'>
+                <Box
+                    display='flex'
+                    gap={3}
+                    mt={{ mobile: 4, tablet: 4, desktop: 8, wide: 8 }}
+                    mb={{ mobile: 8, tablet: 8, desktop: 4, wide: 4 }}
+                    justifyContent='center'
+                >
                     <Button
                         w={{ mobile: 8, tablet: 8, desktop: 12, wide: 12 }}
                         h={{ mobile: 8, tablet: 8, desktop: 12, wide: 12 }}

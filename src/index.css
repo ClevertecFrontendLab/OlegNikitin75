@@ -2,6 +2,10 @@ html,
 #root {
     height: 100vh;
 }
+html,
+body {
+    overflow-x: hidden;
+}
 
 body {
     text-color: #000;

@@ -35,7 +35,8 @@ export const RecipeCard: FC<IRecipeCardProps> = ({
                     <Image
                         src={imageUrl}
                         w={{ mobile: '158px', tablet: '158px', desktop: '346px', wide: '346px' }}
-                        h={{ mobile: '128px', tablet: '128px', desktop: '244px', wide: '244px' }}
+                        h={{ mobile: '132px', tablet: '132px', desktop: '256px', wide: '248px' }}
+                        objectFit='cover'
                     />
                     <Show below='tablet'>
                         <Box position='absolute' left={2} top={2}>
@@ -58,15 +59,21 @@ export const RecipeCard: FC<IRecipeCardProps> = ({
                 </Box>
             )}
             <Box
-                px={{ mobile: '8px', tablet: '8px', desktop: '24px', wide: '24px' }}
-                py={{ mobile: '6px', tablet: '6px', desktop: '20px', wide: '20px' }}
+                px={{ mobile: '8px', tablet: '8px', desktop: '20px', wide: '24px' }}
+                py={{ mobile: '6px', tablet: '6px', desktop: '24px', wide: '20px' }}
                 display='flex'
                 flex='1'
                 flexDirection='column'
                 justifyContent='space-between'
             >
-                {!!footer && tag}
-                {body}
+                <Flex
+                    flexDirection='column'
+                    gap={{ mobile: '6px', tablet: '6px', desktop: 6, wide: 6 }}
+                >
+                    {!!footer && tag}
+                    {body}
+                </Flex>
+
                 {!footer && tag}
                 {!!footer && footer}
             </Box>

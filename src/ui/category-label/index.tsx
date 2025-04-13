@@ -13,10 +13,11 @@ export const CategoryLabel: FC<ICategoryLabelProps> = ({ iconUrl, category, bgCo
         display='inline-flex'
         alignItems='center'
         gap={{ mobile: 1, tablet: 1, desktop: 2, wide: 2 }}
-        fontSize={{ mobile: '13px', tablet: '13px', desktop: '14px', wide: '14px' }}
+        fontSize='13px'
+        lineHeight='20px'
         bg={bgColor}
         px={{ mobile: 1, tablet: 1, desktop: 2, wide: 2 }}
-        py={{ mobile: 0.5, tablet: 0.5, desktop: 1, wide: 1 }}
+        py='2px'
         rounded='4px'
     >
         <Image src={iconUrl} w={4} h={4} />

@@ -15,7 +15,7 @@ export const UserCard: FC<IUserCardProps> = ({
                 <Image src={imageUrl} alt='user-card' />
             </Box>
             <Box>
-                <Box as='span' noOfLines={1}>
+                <Box as='span' noOfLines={1} wordBreak='break-all'>
                     {firstName} {lastName}
                 </Box>
 

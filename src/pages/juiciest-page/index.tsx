@@ -1,6 +1,7 @@
 import { Box, Button } from '@chakra-ui/react';
 
 import { RECIPE_ITEMS_JUICIEST as juisiestItems } from '~/constants/recipe-items';
+import { RELEVANT_RECIPE_ITEMS as relevantItems } from '~/constants/relevant-recipe-items';
 import { PageLayout } from '~/layouts/page-layout';
 import { RecipeGroupList } from '~/modules/recipe-group-list';
 import { Relevant } from '~/modules/relevant';
@@ -23,9 +24,6 @@ export const JuiciestPage = () => (
                 </Box>
             }
         />
-        <Relevant
-            title='Веганская кухня'
-            description='Интересны не только убеждённым вегетарианцам, но и тем, кто хочет  попробовать вегетарианскую диету и готовить вкусные  вегетарианские блюда.'
-        />
+        <Relevant data={relevantItems[0]} />
     </PageLayout>
 );

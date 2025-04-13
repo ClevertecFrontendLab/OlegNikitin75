@@ -37,28 +37,36 @@ export const TabList = ({ items }: { items: ITabListProps[] }) => {
         setTabItemIndex(index);
     };
 
+    const getViewportWidth = () =>
+        Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+
     return (
         <Box
             w='100vw'
             overflowX='auto'
             marginLeft='calc(-50vw + 50%)'
+            position='relative'
+            h='54px'
             css={{
-                '&::-webkit-scrollbar': {
-                    display: 'none',
-                },
+                '&::-webkit-scrollbar': { display: 'none' },
                 '-ms-overflow-style': 'none',
                 'scrollbar-width': 'none',
                 '-webkit-overflow-scrolling': 'touch',
             }}
         >
             <Box
-                maxW={{ mobile: '100%', tablet: '100%', desktop: '880px', wide: '100%' }}
+                position={{
+                    mobile: 'absolute',
+                    tablet: 'absolute',
+                    desktop: 'static',
+                    wide: 'static',
+                }}
+                maxW={{ mobile: 'auto', tablet: 'auto', desktop: '880px', wide: '1006px' }}
                 mx='auto'
                 display='flex'
                 justifyContent='center'
                 borderBottomColor='blackAlpha.200'
                 borderBottomWidth={1}
-                mb={6}
             >
                 {items.map((item, index) => (
                     <TabItem
@@ -68,6 +76,7 @@ export const TabList = ({ items }: { items: ITabListProps[] }) => {
                         onClick={handleTabItemClick}
                         tabItemIndex={tabItemIndex}
                         index={index}
+                        isActive={tabItemIndex === index && getViewportWidth() <= 768}
                     />
                 ))}
             </Box>

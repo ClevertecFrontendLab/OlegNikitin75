@@ -3,5 +3,6 @@ export interface ITabItemProps {
     link: string;
     tabItemIndex?: number;
     index: number;
+    isActive?: boolean;
     onClick: (index: number) => void;
 }
