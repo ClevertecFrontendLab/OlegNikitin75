@@ -2,16 +2,13 @@ html,
 #root {
     height: 100vh;
 }
-html,
-body {
-    overflow-x: hidden;
-}
 
 body {
     text-color: #000;
     min-width: 360px;
     height: 100vh;
     margin: 0 auto;
+    overflow-x: visible;
 }
 #navbar::-webkit-scrollbar {
     width: 8px;

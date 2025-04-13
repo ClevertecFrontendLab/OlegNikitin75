@@ -47,38 +47,6 @@ export const Slider = ({ items }: { items: IRecipeCardItem[] }) => (
         >
             Новые рецепты
         </Heading>
-        {/* <Box
-            position='relative'
-            overflow={{
-                mobile: 'hidden',
-                tablet: 'hidden',
-                desktop: 'hidden',
-                wide: 'hidden',
-            }}
-            h={{ mobile: '220px', tablet: '220px', desktop: '402px', wide: '414px' }}
-        >
-            <Flex position='absolute'  gap={{ mobile: 2, tablet: 3, desktop: 3, wide: 6 }}>
-                {items.map((item, index) => (
-                    <SliderRecipeCard
-                        key={index}
-                        imageUrl={item.imageUrl}
-                        iconUrl={item.iconUrl}
-                        category={item.category}
-                        bgColor='secondary'
-                        tag={
-                            <RecipeTag
-                                iconUrl={item.iconUrl}
-                                category={item.category}
-                                bgColor='secondary'
-                                favorites={item.favorites}
-                                likes={item.likes}
-                            />
-                        }
-                        body={<SliderRecipeBody title={item.title} description={item.description} />}
-                    />
-                ))}
-            </Flex>
-        </Box> */}
         <Box
             position='relative'
             overflow={{
@@ -93,12 +61,11 @@ export const Slider = ({ items }: { items: IRecipeCardItem[] }) => (
                 position='absolute'
                 gap={{ mobile: 2, tablet: 3, desktop: 3, wide: 6 }}
                 style={{
-                    width: 'calc(100% )',
+                    width: 'calc(100% + 24px)',
+                    overflowX: 'auto',
                     scrollSnapType: 'x mandatory',
-                    paddingRight: '12px',
                     scrollbarWidth: 'none',
-                    msOverflowStyle: 'none',
-                    // overflow: 'scroll',
+                    paddingLeft: '12px',
                 }}
             >
                 {items.map((item, index) => (
